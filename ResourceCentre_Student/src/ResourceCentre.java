@@ -4,13 +4,13 @@ public class ResourceCentre {
 
 	public static void main(String[] args) {
 
-		ArrayList<Camcorder> camcorderList = new ArrayList<Camcorder>();
-		ArrayList<Chromebook> chromebookList = new ArrayList<Chromebook>();
+		ArrayList<Tuition> camcorderList = new ArrayList<Tuition>();
+		ArrayList<TimeTable> chromebookList = new ArrayList<TimeTable>();
 
-		camcorderList.add(new Camcorder("CC001", "Sony HDR-CX405", 35));
-		camcorderList.add(new Camcorder("CC002", "Panasonic HC-MDH2", 10));
-		chromebookList.add(new Chromebook("CB001", "ASUS Chromebook ", "Win 10"));
-		chromebookList.add(new Chromebook("CB002", "HP Chromebook", "Win 10"));
+		camcorderList.add(new Tuition("CC001", "Sony HDR-CX405", 35));
+		camcorderList.add(new Tuition("CC002", "Panasonic HC-MDH2", 10));
+		chromebookList.add(new TimeTable("CB001", "ASUS Chromebook ", "Win 10"));
+		chromebookList.add(new TimeTable("CB002", "HP Chromebook", "Win 10"));
 
 		int option = 0;
 
@@ -35,13 +35,13 @@ public class ResourceCentre {
 
 				if (itemType == 1) {
 					// Add a camcorder
-					Camcorder cc = inputCamcorder();
+					Tuition cc = inputCamcorder();
 					ResourceCentre.addCamcorder(camcorderList, cc);
 					System.out.println("Camcorder added");
 
 				} else if (itemType == 2) {
 					// Add a Chromebook
-					Chromebook cb = inputChromebook();
+					TimeTable cb = inputChromebook();
 					ResourceCentre.addChromebook(chromebookList, cb);
 					System.out.println("Chromebook added");
 
@@ -125,7 +125,7 @@ public class ResourceCentre {
 	}
 
 	//================================= Option 1 View items (CRUD- Read) =================================
-	public static String retrieveAllCamcorder(ArrayList<Camcorder> camcorderList) {
+	public static String retrieveAllCamcorder(ArrayList<Tuition> camcorderList) {
 		String output = "";
 
 		for (int i = 0; i < camcorderList.size(); i++) {
@@ -137,7 +137,7 @@ public class ResourceCentre {
 		}
 		return output;
 	}
-	public static void viewAllCamcorder(ArrayList<Camcorder> camcorderList) {
+	public static void viewAllCamcorder(ArrayList<Tuition> camcorderList) {
 		ResourceCentre.setHeader("CAMCORDER LIST");
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
 				"AVAILABLE", "DUE DATE","OPTICAL ZOOM");
@@ -145,46 +145,46 @@ public class ResourceCentre {
 		System.out.println(output);
 	}
 
-	public static String retrieveAllChromebook(ArrayList<Chromebook> chromebookList) {
+	public static String retrieveAllChromebook(ArrayList<TimeTable> chromebookList) {
 		String output = "";
 		// write your code here
 		return output;
 	}
-	public static void viewAllChromebook(ArrayList<Chromebook> chromebookList) {
+	public static void viewAllChromebook(ArrayList<TimeTable> chromebookList) {
 		
 		String output = retrieveAllChromebook(chromebookList);
 		System.out.println(output);
 	}
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
-	public static Camcorder inputCamcorder() {
+	public static Tuition inputCamcorder() {
 		String tag = Helper.readString("Enter asset tag > ");
 		String description = Helper.readString("Enter description > ");
 		int zoom = Helper.readInt("Enter optical zoom > ");
 
-		Camcorder cc= new Camcorder(tag, description, zoom);
+		Tuition cc= new Tuition(tag, description, zoom);
 		return cc;
 		
 	}
-	public static void addCamcorder(ArrayList<Camcorder> camcorderList, Camcorder cc) {
+	public static void addCamcorder(ArrayList<Tuition> camcorderList, Tuition cc) {
 		
 		camcorderList.add(cc);
 		
 	}
 	
-	public static Chromebook inputChromebook() {	
-		Chromebook cb =null;
+	public static TimeTable inputChromebook() {	
+		TimeTable cb =null;
 		// write your code here
 
 		return cb;
 		
 	}	
-	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
+	public static void addChromebook(ArrayList<TimeTable> chromebookList, TimeTable cb) {
 		// write your code here
 	}
 	
 	//================================= Option 3 Loan an item (CRUD - Update) =================================
-	public static boolean doLoanCamcorder(ArrayList<Camcorder> camcorderList, String tag, String dueDate) {
+	public static boolean doLoanCamcorder(ArrayList<Tuition> camcorderList, String tag, String dueDate) {
 		
 		boolean isLoaned = false;
 
@@ -201,7 +201,7 @@ public class ResourceCentre {
 		}
 		return isLoaned;
 	}
-	public static void loanCamcorder(ArrayList<Camcorder> camcorderList) {
+	public static void loanCamcorder(ArrayList<Tuition> camcorderList) {
 		ResourceCentre.viewAllCamcorder(camcorderList);
 		String tag = Helper.readString("Enter asset tag > ");
 		String due = Helper.readString("Enter due date > ");
@@ -213,18 +213,18 @@ public class ResourceCentre {
 		}
 	}
 	
-	public static boolean doLoanChromebook(ArrayList<Chromebook> chromebookList, String tag, String dueDate) {
+	public static boolean doLoanChromebook(ArrayList<TimeTable> chromebookList, String tag, String dueDate) {
 		// write your code here
 		return true;
 	}
-	public static void loanChromebook(ArrayList<Chromebook> chromebookList) {
+	public static void loanChromebook(ArrayList<TimeTable> chromebookList) {
 		// write your code here
 		
 		
 	}
 	
 	//================================= Option 4 Return an item (CRUD - Update)=================================
-	public static boolean doReturnCamcorder(ArrayList<Camcorder> camcorderList,String tag) {
+	public static boolean doReturnCamcorder(ArrayList<Tuition> camcorderList,String tag) {
 		boolean isReturned = false;
 
 		for (int i = 0; i < camcorderList.size(); i++) {
@@ -239,7 +239,7 @@ public class ResourceCentre {
 		return isReturned;
 		
 	}
-	public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
+	public static void returnCamcorder(ArrayList<Tuition> camcorderList) {
 		ResourceCentre.viewAllCamcorder(camcorderList);
 		String tag = Helper.readString("Enter asset tag > ");
 		Boolean isReturned = doReturnCamcorder(camcorderList, tag);
@@ -251,12 +251,12 @@ public class ResourceCentre {
 		}
 	}
 
-	public static boolean doReturnChromebook(ArrayList<Chromebook> chromebookList,String tag){
+	public static boolean doReturnChromebook(ArrayList<TimeTable> chromebookList,String tag){
 		boolean isReturned = false;
 		// write your code here
 		return isReturned;
 	}
-	public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
+	public static void returnChromebook(ArrayList<TimeTable> chromebookList) {
 		// write your code here
 	
 	}

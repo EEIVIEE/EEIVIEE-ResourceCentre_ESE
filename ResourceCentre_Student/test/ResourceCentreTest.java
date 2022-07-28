@@ -8,15 +8,15 @@ import org.junit.Test;
 // C206 AY2022 SEM1 - Eclipse 21-09 JDK16
 public class ResourceCentreTest {
 	// prepare test data
-	private Camcorder cc1;
-	private Camcorder cc2;
-	private Camcorder cc3;
-	private Chromebook cb1;
-	private Chromebook cb2;
-	private Chromebook cb3;
+	private Tuition cc1;
+	private Tuition cc2;
+	private Tuition cc3;
+	private TimeTable cb1;
+	private TimeTable cb2;
+	private TimeTable cb3;
 	
-	private ArrayList<Camcorder> camcorderList;
-	private ArrayList<Chromebook> chromebookList;
+	private ArrayList<Tuition> camcorderList;
+	private ArrayList<TimeTable> chromebookList;
 	
 	public ResourceCentreTest() {
 		super();
@@ -25,16 +25,16 @@ public class ResourceCentreTest {
 	@Before
 	public void setUp() throws Exception {
 		// prepare test data
-		cc1 = new Camcorder("CC0011", "Nikon HDSLR", 40);
-		cc2 = new Camcorder("CC0012", "Sony DSC-RX100M7", 20);
-		cc3 = new Camcorder("CC0013", "panasoni DSC-RX100M7", 30);
-		cb1 = new Chromebook("CB0011", "My Google Chromebook 1st", "Mac OS");
-		cb2 = new Chromebook("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
-		cb3 = new Chromebook("CB0013", "HUAWEI Magicbook 100+", "Mac 10");
+		cc1 = new Tuition("CC0011", "Nikon HDSLR", 40);
+		cc2 = new Tuition("CC0012", "Sony DSC-RX100M7", 20);
+		cc3 = new Tuition("CC0013", "panasoni DSC-RX100M7", 30);
+		cb1 = new TimeTable("CB0011", "My Google Chromebook 1st", "Mac OS");
+		cb2 = new TimeTable("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
+		cb3 = new TimeTable("CB0013", "HUAWEI Magicbook 100+", "Mac 10");
 		
 		
-		camcorderList= new ArrayList<Camcorder>();
-		chromebookList= new ArrayList<Chromebook>();
+		camcorderList= new ArrayList<Tuition>();
+		chromebookList= new ArrayList<TimeTable>();
 	}
 
 	

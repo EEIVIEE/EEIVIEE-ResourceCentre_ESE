@@ -1,8 +1,8 @@
 
-public class Camcorder extends Item{
+public class Tuition extends Item{
 private int opticalZoom;
 
-	public Camcorder(String assetTag, String description, int opticalZoom) {
+	public Tuition(String assetTag, String description, int opticalZoom) {
 		super(assetTag, description);
 		this.opticalZoom = opticalZoom;
 	}

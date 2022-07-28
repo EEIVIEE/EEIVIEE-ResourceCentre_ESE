@@ -1,8 +1,8 @@
 
-public class Chromebook extends Item{
+public class TimeTable extends Item{
 	private String os;
 
-	public Chromebook(String assetTag, String description, String os) {
+	public TimeTable(String assetTag, String description, String os) {
 		super(assetTag, description);
 		this.os = os;
 	}
