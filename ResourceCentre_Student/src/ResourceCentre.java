@@ -32,7 +32,7 @@ public class ResourceCentre {
 
 				if (itemType == 1) {
 					// Add a camcorder
-					Tuition cc = inputCamcorder();
+					Tuition cc = inputTuition();
 					ResourceCentre.addCamcorder(tuitionList, cc);
 					System.out.println("Camcorder added");
 
@@ -57,7 +57,7 @@ public class ResourceCentre {
 
 				if (itemType == 1) {
 					// Loan camcorder
-					ResourceCentre.loanCamcorder(tuitionList);
+					
 				} else if (itemType == 2) {
 					// Loan Chromebook
 					ResourceCentre.loanChromebook(timetableList);
@@ -75,7 +75,7 @@ public class ResourceCentre {
 				int itemType = Helper.readInt("Enter option to select item type > ");
 				if (itemType == 1) {
 					// Return camcorder
-					ResourceCentre.returnCamcorder(tuitionList);
+
 				} else if (itemType == 2) {
 					// Return Chromebook
 					ResourceCentre.returnChromebook(timetableList);
@@ -127,10 +127,12 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", tuitionList.get(i).getAssetTag(),
-					tuitionList.get(i).getDescription(), 
-					ResourceCentre.showAvailability(tuitionList.get(i).getIsAvailable()),
-					tuitionList.get(i).getDueDate(),tuitionList.get(i).getDescription());
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", tuitionList.get(i).getTuitionTitle(),
+					tuitionList.get(i).getTuitionCode(), 
+					tuitionList.get(i).getTuitionDescription(),
+					tuitionList.get(i).getSubjectGroupName(),
+					tuitionList.get(i).getTuitionDuration(),
+					tuitionList.get(i).getPreRequisite());
 		}
 		return output;
 	}
@@ -164,13 +166,17 @@ public class ResourceCentre {
 	}
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
-	public static Tuition inputCamcorder() {
-		String tag = Helper.readString("Enter asset tag > ");
-		String description = Helper.readString("Enter description > ");
-		String zoom = Helper.readString("Enter optical zoom > ");
+	public static Tuition inputTuition() {
+		String code = Helper.readString("Enter asset tag > ");
+		String title = Helper.readString("Enter description > ");
+		String subjectGroup = Helper.readString("Enter optical zoom > ");
+		String description = Helper.readString("Enter optical zoom > ");
+		String duration = Helper.readString("Enter optical zoom > ");
+		String preRequisite = Helper.readString("Enter optical zoom > ");
 
-		Tuition cc= new Tuition(tag, description, zoom);
-		return cc;
+		Tuition tt= new Tuition(code, title, subjectGroup, description,
+				duration, preRequisite);
+		return tt;
 		
 	}
 	public static void addCamcorder(ArrayList<Tuition> camcorderList, Tuition cc) {
@@ -191,34 +197,6 @@ public class ResourceCentre {
 	}
 	
 	//================================= Option 3 Loan an item (CRUD - Update) =================================
-	public static boolean doLoanCamcorder(ArrayList<Tuition> camcorderList, String tag, String dueDate) {
-		
-		boolean isLoaned = false;
-
-		for (int i = 0; i < camcorderList.size(); i++) {
-			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag())
-					&& camcorderList.get(i).getIsAvailable() == true) {
-				
-				camcorderList.get(i).setIsAvailable(false);
-				camcorderList.get(i).setDueDate(dueDate);
-				
-				isLoaned = true;
-				
-			}
-		}
-		return isLoaned;
-	}
-	public static void loanCamcorder(ArrayList<Tuition> camcorderList) {
-		ResourceCentre.viewAllTuition(camcorderList);
-		String tag = Helper.readString("Enter asset tag > ");
-		String due = Helper.readString("Enter due date > ");
-		Boolean isLoaned =doLoanCamcorder(camcorderList, tag, due);
-		if (isLoaned == false) {
-			System.out.println("Invalid asset tag");
-		} else {
-			System.out.println("Camcorder " + tag + " loaned out");
-		}
-	}
 	
 	public static boolean doLoanChromebook(ArrayList<TimeTable> chromebookList, String tag, String dueDate) {
 		// write your code here
@@ -231,32 +209,8 @@ public class ResourceCentre {
 	}
 	
 	//================================= Option 4 Return an item (CRUD - Update)=================================
-	public static boolean doReturnCamcorder(ArrayList<Tuition> camcorderList,String tag) {
-		boolean isReturned = false;
+	
 
-		for (int i = 0; i < camcorderList.size(); i++) {
-			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag())
-					&& camcorderList.get(i).getIsAvailable() == false) {
-				camcorderList.get(i).setIsAvailable(true);
-				camcorderList.get(i).setDueDate("");
-				isReturned = true;
-				
-			}
-		}
-		return isReturned;
-		
-	}
-	public static void returnCamcorder(ArrayList<Tuition> camcorderList) {
-		ResourceCentre.viewAllTuition(camcorderList);
-		String tag = Helper.readString("Enter asset tag > ");
-		Boolean isReturned = doReturnCamcorder(camcorderList, tag);
-		
-		if (isReturned == false) {
-			System.out.println("Invalid asset tag");
-		} else {
-			System.out.println("Camcorder " + tag + " returned");
-		}
-	}
 
 	public static boolean doReturnChromebook(ArrayList<TimeTable> chromebookList,String tag){
 		boolean isReturned = false;
