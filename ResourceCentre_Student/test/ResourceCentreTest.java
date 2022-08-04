@@ -141,13 +141,13 @@ public class ResourceCentreTest {
 	@Test
 	public void testRemoveTimetable() {
 		//boundary
-		assertNotNull("test if there is valid Timetable arraylist to loan from", timetableList);
+		assertNotNull("test if there is valid Timetable arraylist to delete from", timetableList);
 		
 		ResourceCentre.addTimetable(timetableList, cb1);
 		// normal
 		ResourceCentre.removeTimetable(timetableList, "Math");
 		
-		assertEquals("test if there is no longer a valid Timetable to loan from",0, timetableList.size());
+		assertEquals("test if there is no longer a valid Timetable to delete from",0, timetableList.size());
 		
 	}
 
