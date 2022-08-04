@@ -15,8 +15,8 @@ public class ResourceCentreTest {
 	private TimeTable cb2;
 	private TimeTable cb3;
 	
-	private ArrayList<Tuition> camcorderList;
-	private ArrayList<TimeTable> chromebookList;
+	private ArrayList<Tuition> tuitionList;
+	private ArrayList<TimeTable> timetableList;
 	
 	public ResourceCentreTest() {
 		super();
@@ -25,143 +25,115 @@ public class ResourceCentreTest {
 	@Before
 	public void setUp() throws Exception {
 		// prepare test data
-		cc1 = new Tuition("CC0011", "Nikon HDSLR", 40);
-		cc2 = new Tuition("CC0012", "Sony DSC-RX100M7", 20);
-		cc3 = new Tuition("CC0013", "panasoni DSC-RX100M7", 30);
+		cc1 = new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
+		cc2 = new Tuition("CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
+		cc3 = new Tuition("CC0013", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
 		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		
 		
-		camcorderList= new ArrayList<Tuition>();
-		chromebookList= new ArrayList<TimeTable>();
+		tuitionList= new ArrayList<Tuition>();
+		timetableList= new ArrayList<TimeTable>();
 	}
 
 	
 	@Test
 	public void testAddCamcorder() {
 		// Item list is not null, so that can add a new item
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
+		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
-		ResourceCentre.addTuiton(camcorderList, cc1);		
-		assertEquals("Test if that Camcorder arraylist size is 1?", 1, camcorderList.size());
+		ResourceCentre.addTuiton(tuitionList, cc1);		
+		assertEquals("Test if that Camcorder arraylist size is 1?", 1, tuitionList.size());
 		
 		//The item just added is as same as the first item of the list
-		assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, camcorderList.get(0));
+		assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, tuitionList.get(0));
 		
 		//Add another item. test The size of the list is 2?
-		ResourceCentre.addTuiton(camcorderList, cc2);
-		ResourceCentre.addTuiton(camcorderList, cc3);
-		assertEquals("Test that Camcorder arraylist size is 3?", 3, camcorderList.size());
-		assertSame("Test that Camcorder is added same as 3rd item of the list?", cc3, camcorderList.get(2));
+		ResourceCentre.addTuiton(tuitionList, cc2);
+		ResourceCentre.addTuiton(tuitionList, cc3);
+		assertEquals("Test that Camcorder arraylist size is 3?", 3, tuitionList.size());
+		assertSame("Test that Camcorder is added same as 3rd item of the list?", cc3, tuitionList.get(2));
 	}
 	@Test
 	public void testAddChromebook() {
-		//fail("Not yet implemented");
-		// write your code here 
+		// Item list is not null, so that can add a new item
+				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
+				
+				//Given an empty list, after adding 1 item, the size of the list is 1
+				ResourceCentre.addTuiton(tuitionList, cc1);		
+				assertEquals("Test if that Camcorder arraylist size is 1?", 1, timetableList.size());
+				
+				//The item just added is as same as the first item of the list
+				assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, timetableList.get(0));
+				
+				//Add another item. test The size of the list is 2?
+				ResourceCentre.addTimetable(timetableList, cb2);
+				ResourceCentre.addTimetable(timetableList, cb3);
+				assertEquals("Test that Camcorder arraylist size is 3?", 3, timetableList.size());
+				assertSame("Test that Camcorder is added same as 3rd item of the list?", cb3, timetableList.get(2));
 	}
 	
 	@Test
-	public void testRetrieveAllCamcorder() {
+	public void testRetrieveAllTuition() {
 		// Test if Item list is not null but empty, so that can add a new item
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
+		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
 		
 		//test if the list of camcorders retrieved from the SourceCentre is empty
-		String allCamcorder= ResourceCentre.retrieveAllTuition(camcorderList);
+		String allCamcorder= ResourceCentre.retrieveAllTuition(tuitionList);
 		String testOutput = "";
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
-		ResourceCentre.addTuiton(camcorderList, cc1);
-		ResourceCentre.addTuiton(camcorderList, cc2);
-		assertEquals("Test if that Camcorder arraylist size is 2?", 2, camcorderList.size());
+		ResourceCentre.addTuiton(tuitionList, cc1);
+		ResourceCentre.addTuiton(tuitionList, cc2);
+		assertEquals("Test if that Camcorder arraylist size is 2?", 2, tuitionList.size());
 		
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
-		allCamcorder= ResourceCentre.retrieveAllTuition(camcorderList);
+		allCamcorder= ResourceCentre.retrieveAllTuition(tuitionList);
 
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0011", "Nikon HDSLR", "Yes", "", 40);
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0012", "Sony DSC-RX100M7", "Yes", "", 20);
+		testOutput = String.format("%-10s %-30s %-10d %-10s %-20s $-20s\n","Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		testOutput += String.format("%-10s %-30s %-10d %-10s %-20s %-20s\n","English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+
 	
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 		
 	}
 	@Test
-	public void testRetrieveAllChromebook() {
-		//fail("Not yet implemented");
-		// write your code here
-	}
-
-	@Test
-	public void testDoLoanCamcorder() {
-
-		//boundary
-		assertNotNull("test if there is valid Camcorder arraylist to loan from", camcorderList);
-		
-		ResourceCentre.addTuiton(camcorderList, cc1);
-		
-		// normal
-		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "8-8-2020" );
-		assertTrue("Test if an available item is ok to loan?", ok);
-		assertFalse(camcorderList.get(0).getIsAvailable());
-		assertEquals(camcorderList.get(0).getDueDate(),"8-8-2020");
-		
+	public void testRetrieveAllTimetable() {
+		// Test if Item list is not null but empty, so that can add a new item
+				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
 				
-		//error condition
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "8-8-2020" );
-		assertFalse("Test if an same item is NOT ok to loan again?", ok);	
-		
-		//error condition
-		ResourceCentre.addTuiton(camcorderList, cc2);	
-		cc2.setIsAvailable(false);
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "8-8-2020" );
-		assertFalse("Test that un-available item is NOT ok to loan?", ok);
-		
-		//error condition
-		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013", "8-8-2020" );
-		assertFalse("Test that non-esiting item is NOT ok to loan?", ok);
+				//test if the list of camcorders retrieved from the SourceCentre is empty
+				String allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
+				String testOutput = "";
+				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
+						
+				//Given an empty list, after adding 2 items, test if the size of the list is 2
+				ResourceCentre.addTimetable(timetableList, cb1);
+				ResourceCentre.addTimetable(timetableList, cb2);
+				assertEquals("Test if that Camcorder arraylist size is 2?", 2, timetableList.size());
+				
+				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+				allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
+
+				testOutput = String.format("%-10s %-30s %-10d %-10s %-20s $-20s\n","Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+				testOutput += String.format("%-10s %-30s %-10d %-10s %-20s %-20s\n","English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+				
+				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
+				
+	}
 
 
-	}
-	
-	@Test
-	public void testDoLoanChromebook() {
-		//fail("Not yet implemented");
-		// write your code here
-	}
-	
-	@Test
-	public void testDoReturnCamcorder() {
-		//boundary
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
-		ResourceCentre.addTuiton(camcorderList, cc1);
-		//error
-		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0011");
-		assertFalse("Test if available camcorder CC0011 is returned -false?", isReturned);		
-		//normal
-		ResourceCentre.addTuiton(camcorderList, cc2);
-		cc2.setIsAvailable(false);
-		isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0012");
-		assertTrue("Test if loaned out amcorder CC0012 is returned- true", isReturned);
-		//error
-		isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0013");
-		assertFalse("Test if non-existing amcorder CC0013 is returned - false?", isReturned);
-		
-	}
-	@Test
-	public void testDoReturnChromebook() {
-		//fail("Not yet implemented");
-		// write your code here
-	}
-	
 	@After
 	public void tearDown() throws Exception {
 		cc1 = null;
 		cc2 = null;
 		cb1 = null;
 		cb2 = null;
-		camcorderList = null;
-		chromebookList = null;
+		tuitionList = null;
+		timetableList = null;
 
 	}
 
