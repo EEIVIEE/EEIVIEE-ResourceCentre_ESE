@@ -7,14 +7,14 @@ public class ResourceCentre {
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
 		ArrayList<TimeTable> timetableList = new ArrayList<TimeTable>();
 
-		timetableList.add(new TimeTable("Math", "1hr 30 mins",35, "6;30 PM", "8:30 PM", null));
+		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", null));
 
 		int option = 0;
 
 		while (option != 5) {
 
 			ResourceCentre.menu();
-			
+
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
@@ -22,12 +22,16 @@ public class ResourceCentre {
 				ResourceCentre.viewAllTimetable(timetableList);
 
 			} else if (option == 2) {
+				//Register for tuition timetable
+				System.out.println("Registration details");
+
+			} else if (option == 3) {
 				// Add a new item
-				ResourceCentre.setHeader("ADD");			
+				ResourceCentre.setHeader("ADD");
 				ResourceCentre.setHeader("ITEM TYPES");
 				System.out.println("1. Camcorder");
 				System.out.println("2. Chromebook");
-				
+
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == 1) {
@@ -46,32 +50,33 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 3) {
+			} else if (option == 4) {
 				// Loan item
-				ResourceCentre.setHeader("LOAN");			
+				ResourceCentre.setHeader("LOAN");
 				ResourceCentre.setHeader("ITEM TYPES");
 				System.out.println("1. Camcorder");
 				System.out.println("2. Chromebook");
-				
+
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == 1) {
 					// Loan camcorder
-					
+
 				} else if (itemType == 2) {
 					// Loan Chromebook
 					ResourceCentre.loanChromebook(timetableList);
 				} else {
 					System.out.println("Invalid type");
 				}
+				
 
-			} else if (option == 4) {
+			} else if (option == 5) {
 				// Return item
-				ResourceCentre.setHeader("RETURN");				
+				ResourceCentre.setHeader("RETURN");
 				ResourceCentre.setHeader("ITEM TYPES");
 				System.out.println("1. Camcorder");
 				System.out.println("2. Chromebook");
-				
+
 				int itemType = Helper.readInt("Enter option to select item type > ");
 				if (itemType == 1) {
 					// Return camcorder
@@ -83,12 +88,11 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 5) {
+			} else if (option == 6) {
 				System.out.println("Bye!");
 			} else {
-				System.out.println("Invalid option");
+				System.out.println("invalid option");
 			}
-
 		}
 
 	}
@@ -96,14 +100,15 @@ public class ResourceCentre {
 	public static void menu() {
 		ResourceCentre.setHeader("RESOURCE CENTRE APP");
 		System.out.println("1. Display Inventory");
-		System.out.println("2. Add item");
-		System.out.println("3. Loan item");
-		System.out.println("4. Return item");
-		System.out.println("5. Quit");
+		System.out.println("2. Timetable registration");
+		System.out.println("3. Add item");
+		System.out.println("4. Loan item");
+		System.out.println("5. Return item");
+		System.out.println("6. Quit");
 		Helper.line(80, "-");
 
 	}
-	
+
 	public static void setHeader(String header) {
 		Helper.line(80, "-");
 		System.out.println(header);
@@ -121,26 +126,26 @@ public class ResourceCentre {
 		return avail;
 	}
 
-	//================================= Option 1 View items (CRUD- Read) =================================
+	// ================================= Option 1 View items (CRUD- Read)
+	// =================================
 	public static String retrieveAllTuition(ArrayList<Tuition> tuitionList) {
 		String output = "";
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
 			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", tuitionList.get(i).getTuitionTitle(),
-					tuitionList.get(i).getTuitionCode(), 
-					tuitionList.get(i).getTuitionDescription(),
-					tuitionList.get(i).getSubjectGroupName(),
-					tuitionList.get(i).getTuitionDuration(),
+					tuitionList.get(i).getTuitionCode(), tuitionList.get(i).getTuitionDescription(),
+					tuitionList.get(i).getSubjectGroupName(), tuitionList.get(i).getTuitionDuration(),
 					tuitionList.get(i).getPreRequisite());
 		}
 		return output;
 	}
+
 	public static void viewAllTuition(ArrayList<Tuition> tuitionList) {
 		ResourceCentre.setHeader("CAMCORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION",
-				"AVAILABLE", "DUE DATE","OPTICAL ZOOM");
-		 output += retrieveAllTuition(tuitionList);	
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION", "AVAILABLE",
+				"DUE DATE", "OPTICAL ZOOM");
+		output += retrieveAllTuition(tuitionList);
 		System.out.println(output);
 	}
 
@@ -150,44 +155,44 @@ public class ResourceCentre {
 		for (int i = 0; i < timetableList.size(); i++) {
 
 			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n", timetableList.get(i).getTuition(),
-					timetableList.get(i).getDuration(), 
-					timetableList.get(i).getStart_time(),
-					timetableList.get(i).getEnd_time(),
-					timetableList.get(i).getMode(),
+					timetableList.get(i).getDuration(), timetableList.get(i).getStart_time(),
+					timetableList.get(i).getEnd_time(), timetableList.get(i).getMode(),
 					timetableList.get(i).getPrice());
 		}
 		return output;
 	}
+
 	public static void viewAllTimetable(ArrayList<TimeTable> chromebookList) {
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", "TUITION NAME", "DURATION",
-				"START TIME", "END TIME","MODE","PRICE");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", "TUITION NAME", "DURATION", "START TIME",
+				"END TIME", "MODE", "PRICE");
 		output += retrieveAllTimetable(chromebookList);
 		System.out.println(output);
 	}
 
-	//================================= Option 2 Add an item (CRUD - Create) =================================
+	// ================================= Option 2 Add an item (CRUD - Create)
+	// =================================
 	public static Tuition inputTuition() {
-		String code = Helper.readString("Enter tuition code > ");
-		String title = Helper.readString("Enter tuition title > ");
-		String subjectGroup = Helper.readString("Enter Subject Group > ");
-		String description = Helper.readString("Enter description > ");
-		String duration = Helper.readString("Enter duration > ");
-		String preRequisite = Helper.readString("Enter pre-requisite > ");
-		String teacher = Helper.readString("Enter teacher > ");
-		String yearStart = Helper.readString("Enter year start > ");
-		
-		Tuition t= new Tuition(code, title, subjectGroup, description,
-				duration, preRequisite,teacher,yearStart);
+		String code = Helper.readString("Enter asset tag > ");
+		String title = Helper.readString("Enter description > ");
+		String subjectGroup = Helper.readString("Enter optical zoom > ");
+		String description = Helper.readString("Enter optical zoom > ");
+		String duration = Helper.readString("Enter optical zoom > ");
+		String preRequisite = Helper.readString("Enter optical zoom > ");
+		String teacher = Helper.readString("Enter optical zoom > ");
+		String yearStart = Helper.readString("Enter optical zoom > ");
+
+		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
 		return t;
-		
+
 	}
+
 	public static void addTuiton(ArrayList<Tuition> TuitionList, Tuition t) {
-		
+
 		TuitionList.add(t);
-		
+
 	}
-	
-	public static TimeTable inputTimetable() {	
+
+	public static TimeTable inputTimetable() {
 		// write your code here
 		String title = Helper.readString("Enter asset tag > ");
 		String duration = Helper.readString("Enter description > ");
@@ -195,43 +200,44 @@ public class ResourceCentre {
 		String start_time = Helper.readString("Enter optical zoom > ");
 		String end_time = Helper.readString("Enter optical zoom > ");
 		String mode = Helper.readString("Enter optical zoom > ");
-		
-		TimeTable tt =new TimeTable(title, duration, price, start_time, end_time, mode);
+
+		TimeTable tt = new TimeTable(title, duration, price, start_time, end_time, mode);
 		return tt;
-		
-	}	
+
+	}
+
 	public static void addTimetable(ArrayList<TimeTable> timetableList, TimeTable tt) {
 		// write your code here
-		
+
 		timetableList.add(tt);
-		
+
 	}
-	
-	//================================= Option 3 Loan an item (CRUD - Update) =================================
-	
+
+	// ================================= Option 3 Loan an item (CRUD - Update)
+	// =================================
+
 	public static boolean doLoanChromebook(ArrayList<TimeTable> chromebookList, String tag, String dueDate) {
 		// write your code here
 		return true;
 	}
+
 	public static void loanChromebook(ArrayList<TimeTable> chromebookList) {
 		// write your code here
-		
-		
+
 	}
-	
-	//================================= Option 4 Return an item (CRUD - Update)=================================
-	
 
+	// ================================= Option 4 Return an item (CRUD -
+	// Update)=================================
 
-	public static boolean doReturnChromebook(ArrayList<TimeTable> chromebookList,String tag){
+	public static boolean doReturnChromebook(ArrayList<TimeTable> chromebookList, String tag) {
 		boolean isReturned = false;
 		// write your code here
 		return isReturned;
 	}
+
 	public static void returnChromebook(ArrayList<TimeTable> chromebookList) {
 		// write your code here
-	
-	}
 
+	}
 
 }
