@@ -59,20 +59,20 @@ public class ResourceCentreTest {
 	@Test
 	public void testAddTimetable() {
 		// Item list is not null, so that can add a new item
-				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
+				assertNotNull("Test if there is valid Timetable arraylist to add to", timetableList);
 				
 				//Given an empty list, after adding 1 item, the size of the list is 1
 				ResourceCentre.addTimetable(timetableList, cb1);		
-				assertEquals("Test if that Camcorder arraylist size is 1?", 1, timetableList.size());
+				assertEquals("Test if that Timetable arraylist size is 1?", 1, timetableList.size());
 				
 				//The item just added is as same as the first item of the list
-				assertSame("Test that Camcorder is added same as 1st item of the list?", cb1, timetableList.get(0));
+				assertSame("Test that Timetable is added same as 1st item of the list?", cb1, timetableList.get(0));
 				
 				//Add another item. test The size of the list is 2?
 				ResourceCentre.addTimetable(timetableList, cb2);
 				ResourceCentre.addTimetable(timetableList, cb3);
-				assertEquals("Test that Camcorder arraylist size is 3?", 3, timetableList.size());
-				assertSame("Test that Camcorder is added same as 3rd item of the list?", cb3, timetableList.get(2));
+				assertEquals("Test that Timmetable arraylist size is 3?", 3, timetableList.size());
+				assertSame("Test that Timetable is added same as 3rd item of the list?", cb3, timetableList.get(2));
 	}
 	
 	@Test
