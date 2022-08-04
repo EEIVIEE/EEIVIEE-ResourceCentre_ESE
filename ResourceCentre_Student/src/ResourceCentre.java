@@ -49,7 +49,7 @@ public class ResourceCentre {
 
 				if (itemType == 1) {
 					// Add a Tuitions
-					Tuition cc = ResourceCentre.inputTuition();
+					Tuition cc = inputTuition();
 					ResourceCentre.addTuiton(tuitionList, cc);
 					System.out.println("Tuition added");
 
