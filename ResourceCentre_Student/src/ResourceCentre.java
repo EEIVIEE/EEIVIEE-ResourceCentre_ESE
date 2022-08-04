@@ -133,10 +133,17 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", tuitionList.get(i).getTuitionTitle(),
-					tuitionList.get(i).getTuitionCode(), tuitionList.get(i).getTuitionDescription(),
-					tuitionList.get(i).getSubjectGroupName(), tuitionList.get(i).getTuitionDuration(),
-					tuitionList.get(i).getPreRequisite());
+
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
+					tuitionList.get(i).getTuitionTitle(), 
+					tuitionList.get(i).getTuitionDescription(),
+					tuitionList.get(i).getSubjectGroupName(),
+					tuitionList.get(i).getTuitionDuration(),
+					tuitionList.get(i).getPreRequisite(),
+					tuitionList.get(i).getTeacher(),
+					tuitionList.get(i).getYearStart());
+
+
 		}
 		return output;
 	}

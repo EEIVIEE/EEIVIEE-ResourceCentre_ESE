@@ -39,7 +39,7 @@ public class ResourceCentreTest {
 
 	
 	@Test
-	public void testAddCamcorder() {
+	public void testAddTuition() {
 		// Item list is not null, so that can add a new item
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
 		
@@ -62,11 +62,11 @@ public class ResourceCentreTest {
 				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
 				
 				//Given an empty list, after adding 1 item, the size of the list is 1
-				ResourceCentre.addTuiton(tuitionList, cc1);		
+				ResourceCentre.addTimetable(timetableList, cb1);		
 				assertEquals("Test if that Camcorder arraylist size is 1?", 1, timetableList.size());
 				
 				//The item just added is as same as the first item of the list
-				assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, timetableList.get(0));
+				assertSame("Test that Camcorder is added same as 1st item of the list?", cb1, timetableList.get(0));
 				
 				//Add another item. test The size of the list is 2?
 				ResourceCentre.addTimetable(timetableList, cb2);
@@ -81,9 +81,9 @@ public class ResourceCentreTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
 		
 		//test if the list of camcorders retrieved from the SourceCentre is empty
-		String allCamcorder= ResourceCentre.retrieveAllTuition(tuitionList);
+		String allTuition= ResourceCentre.retrieveAllTuition(tuitionList);
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+		assertEquals("Check that ViewAllCamcorderlist", testOutput, allTuition);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
 		ResourceCentre.addTuiton(tuitionList, cc1);
@@ -91,13 +91,13 @@ public class ResourceCentreTest {
 		assertEquals("Test if that Camcorder arraylist size is 2?", 2, tuitionList.size());
 		
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
-		allCamcorder= ResourceCentre.retrieveAllTuition(tuitionList);
+		allTuition= ResourceCentre.retrieveAllTuition(tuitionList);
 
-		testOutput = String.format("%-10s %-30s %-10d %-10s %-20s $-20s\n","Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
-		testOutput += String.format("%-10s %-30s %-10d %-10s %-20s %-20s\n","English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n","CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n","CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
 
 	
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
+		assertEquals("Check that ViewAllCamcorderlist", testOutput, allTuition);
 		
 	}
 	@Test
@@ -118,8 +118,8 @@ public class ResourceCentreTest {
 				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
 				allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
 
-				testOutput = String.format("%-10s %-30s %-10d %-10s %-20s $-20s\n","Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
-				testOutput += String.format("%-10s %-30s %-10d %-10s %-20s %-20s\n","English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","Math", "1hr 30 mins", "6:30 PM", "8:30 PM", null,35);
+				testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","English", "1hr 30 mins", "6:30 PM", "8:30 PM", null, 35);
 				
 				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
 				
