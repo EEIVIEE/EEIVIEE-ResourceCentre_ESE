@@ -59,7 +59,7 @@ public class ResourceCentreTest {
 	}
 	@Test
 	public void testAddTimetable() {
-		// Item list is not null, so that can add a new item
+		// Item list is not null, so that can add a new items
 				assertNotNull("Test if there is valid Timetable arraylist to add to", timetableList);
 				
 				//Given an empty list, after adding 1 item, the size of the list is 1
