@@ -65,5 +65,5 @@ public class Registration {
 	public void setDatetime(String datetime) {
 		this.datetime = datetime;
 	}
-
+//a
 }
