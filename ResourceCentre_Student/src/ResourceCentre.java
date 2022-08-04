@@ -167,7 +167,7 @@ public class ResourceCentre {
 	// ================================= Option 2 Register tuition timetable (CRUD -
 	// Create)
 	// =================================
-	public static Registration inputRegDetails() {
+	public static Registration inputRegistration() {
 		int regnum = Helper.readInt("Enter registration number > ");
 		int regid = Helper.readInt("Enter registration id > ");
 		int tuitionid = Helper.readInt("Enter tuition id >");
@@ -177,6 +177,12 @@ public class ResourceCentre {
 
 		Registration reg = new Registration(regnum, regid, tuitionid, email, status, datetime);
 		return reg;
+
+	}
+	
+	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
+
+		RegistrationList.add(r);
 
 	}
 	
