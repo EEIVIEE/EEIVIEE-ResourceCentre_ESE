@@ -1,4 +1,3 @@
-
 public class TimeTable{
 	private String title;
 	private String duration;
