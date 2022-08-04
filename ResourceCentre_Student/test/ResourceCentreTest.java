@@ -44,15 +44,15 @@ public class ResourceCentreTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
-		ResourceCentre.addCamcorder(camcorderList, cc1);		
+		ResourceCentre.addTuiton(camcorderList, cc1);		
 		assertEquals("Test if that Camcorder arraylist size is 1?", 1, camcorderList.size());
 		
 		//The item just added is as same as the first item of the list
 		assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, camcorderList.get(0));
 		
 		//Add another item. test The size of the list is 2?
-		ResourceCentre.addCamcorder(camcorderList, cc2);
-		ResourceCentre.addCamcorder(camcorderList, cc3);
+		ResourceCentre.addTuiton(camcorderList, cc2);
+		ResourceCentre.addTuiton(camcorderList, cc3);
 		assertEquals("Test that Camcorder arraylist size is 3?", 3, camcorderList.size());
 		assertSame("Test that Camcorder is added same as 3rd item of the list?", cc3, camcorderList.get(2));
 	}
@@ -73,8 +73,8 @@ public class ResourceCentreTest {
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
-		ResourceCentre.addCamcorder(camcorderList, cc1);
-		ResourceCentre.addCamcorder(camcorderList, cc2);
+		ResourceCentre.addTuiton(camcorderList, cc1);
+		ResourceCentre.addTuiton(camcorderList, cc2);
 		assertEquals("Test if that Camcorder arraylist size is 2?", 2, camcorderList.size());
 		
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
@@ -98,7 +98,7 @@ public class ResourceCentreTest {
 		//boundary
 		assertNotNull("test if there is valid Camcorder arraylist to loan from", camcorderList);
 		
-		ResourceCentre.addCamcorder(camcorderList, cc1);
+		ResourceCentre.addTuiton(camcorderList, cc1);
 		
 		// normal
 		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "8-8-2020" );
@@ -112,7 +112,7 @@ public class ResourceCentreTest {
 		assertFalse("Test if an same item is NOT ok to loan again?", ok);	
 		
 		//error condition
-		ResourceCentre.addCamcorder(camcorderList, cc2);	
+		ResourceCentre.addTuiton(camcorderList, cc2);	
 		cc2.setIsAvailable(false);
 		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0012", "8-8-2020" );
 		assertFalse("Test that un-available item is NOT ok to loan?", ok);
@@ -134,12 +134,12 @@ public class ResourceCentreTest {
 	public void testDoReturnCamcorder() {
 		//boundary
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
-		ResourceCentre.addCamcorder(camcorderList, cc1);
+		ResourceCentre.addTuiton(camcorderList, cc1);
 		//error
 		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0011");
 		assertFalse("Test if available camcorder CC0011 is returned -false?", isReturned);		
 		//normal
-		ResourceCentre.addCamcorder(camcorderList, cc2);
+		ResourceCentre.addTuiton(camcorderList, cc2);
 		cc2.setIsAvailable(false);
 		isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0012");
 		assertTrue("Test if loaned out amcorder CC0012 is returned- true", isReturned);

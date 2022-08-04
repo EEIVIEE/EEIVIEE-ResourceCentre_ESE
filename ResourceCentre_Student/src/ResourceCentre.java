@@ -33,13 +33,13 @@ public class ResourceCentre {
 				if (itemType == 1) {
 					// Add a camcorder
 					Tuition cc = inputTuition();
-					ResourceCentre.addCamcorder(tuitionList, cc);
+					ResourceCentre.addTuiton(tuitionList, cc);
 					System.out.println("Camcorder added");
 
 				} else if (itemType == 2) {
 					// Add a Chromebook
-					TimeTable cb = inputChromebook();
-					ResourceCentre.addChromebook(timetableList, cb);
+					TimeTable cb = inputTimetable();
+					ResourceCentre.addTimetable(timetableList, cb);
 					System.out.println("Chromebook added");
 
 				} else {
@@ -173,27 +173,38 @@ public class ResourceCentre {
 		String description = Helper.readString("Enter optical zoom > ");
 		String duration = Helper.readString("Enter optical zoom > ");
 		String preRequisite = Helper.readString("Enter optical zoom > ");
-
-		Tuition tt= new Tuition(code, title, subjectGroup, description,
-				duration, preRequisite);
-		return tt;
+		String teacher = Helper.readString("Enter optical zoom > ");
+		String yearStart = Helper.readString("Enter optical zoom > ");
+		
+		Tuition t= new Tuition(code, title, subjectGroup, description,
+				duration, preRequisite,teacher,yearStart);
+		return t;
 		
 	}
-	public static void addCamcorder(ArrayList<Tuition> camcorderList, Tuition cc) {
+	public static void addTuiton(ArrayList<Tuition> TuitionList, Tuition t) {
 		
-		camcorderList.add(cc);
+		TuitionList.add(t);
 		
 	}
 	
-	public static TimeTable inputChromebook() {	
-		TimeTable cb =null;
+	public static TimeTable inputTimetable() {	
 		// write your code here
-
-		return cb;
+		String title = Helper.readString("Enter asset tag > ");
+		String duration = Helper.readString("Enter description > ");
+		int price = Helper.readInt("Enter optical zoom > ");
+		String start_time = Helper.readString("Enter optical zoom > ");
+		String end_time = Helper.readString("Enter optical zoom > ");
+		String mode = Helper.readString("Enter optical zoom > ");
+		
+		TimeTable tt =new TimeTable(title, duration, price, start_time, end_time, mode);
+		return tt;
 		
 	}	
-	public static void addChromebook(ArrayList<TimeTable> chromebookList, TimeTable cb) {
+	public static void addTimetable(ArrayList<TimeTable> timetableList, TimeTable tt) {
 		// write your code here
+		
+		timetableList.add(tt);
+		
 	}
 	
 	//================================= Option 3 Loan an item (CRUD - Update) =================================
