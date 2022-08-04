@@ -71,29 +71,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 5) {
-				// Return item
-				ResourceCentre.setHeader("RETURN");
-				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Camcorder");
-				System.out.println("2. Chromebook");
-
-				int itemType = Helper.readInt("Enter option to select item type > ");
-				if (itemType == 1) {
-					// Return camcorder
-
-				} else if (itemType == 2) {
-					// Return Chromebook
-				
-				} else {
-					System.out.println("Invalid type");
-				}
-
-			} else if (option == 6) {
-				System.out.println("Bye!");
-			} else {
-				System.out.println("invalid option");
-			}
+			} 
 		}
 
 	}
