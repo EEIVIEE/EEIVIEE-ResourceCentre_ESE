@@ -126,6 +126,18 @@ public class ResourceCentreTest {
 	}
 	
 	@Test
+	public void testRemoveTuition() {
+		//boundary
+		assertNotNull("test if there is valid Tuition arraylist to loan from", tuitionList);
+		
+		ResourceCentre.addTuiton(tuitionList, cc1);
+		// normal
+		ResourceCentre.removeTuition(tuitionList, "CC0011");
+		assertEquals("test if there is no longer a valid Tuition to loan from",0, tuitionList.size());
+		
+	}
+	
+	@Test
 	public void testRemoveTimetable() {
 		//boundary
 		assertNotNull("test if there is valid Timetable arraylist to loan from", timetableList);
