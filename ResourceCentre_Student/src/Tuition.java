@@ -1,19 +1,18 @@
 
 public class Tuition extends Item{
-private int opticalZoom;
+private String description;
 
-	public Tuition(String assetTag, String description, int opticalZoom) {
-		super(assetTag, description);
-		this.opticalZoom = opticalZoom;
+	public Tuition(String tuitionCode, String tuitionName, String description) {
+		super(tuitionCode, tuitionName);
+		this.description = description;
 	}
-
-	public int getOpticalZoom() {
-		return opticalZoom;
+    //o
+	public String getDescription() {
+		return description;
 	}
 	
 	public String toString(){
 		String output = "";
-		// Write your codes here
 		return output;
 	}
 }
