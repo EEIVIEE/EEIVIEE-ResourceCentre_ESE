@@ -57,7 +57,7 @@ public class ResourceCentreTest {
 		assertSame("Test that Camcorder is added same as 3rd item of the list?", cc3, tuitionList.get(2));
 	}
 	@Test
-	public void testAddChromebook() {
+	public void testAddTimetable() {
 		// Item list is not null, so that can add a new item
 				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
 				
@@ -123,6 +123,19 @@ public class ResourceCentreTest {
 				
 				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
 				
+	}
+	
+	@Test
+	public void testRemoveTimetable() {
+		//boundary
+		assertNotNull("test if there is valid Timetable arraylist to loan from", timetableList);
+		
+		ResourceCentre.addTimetable(timetableList, cb1);
+		// normal
+		ResourceCentre.removeTimetable(timetableList, "Math");
+		
+		assertEquals("test if there is no longer a valid Timetable to loan from",0, timetableList.size());
+		
 	}
 
 

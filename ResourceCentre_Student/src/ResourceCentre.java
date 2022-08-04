@@ -84,7 +84,7 @@ public class ResourceCentre {
 
 				} else if (itemType == 2) {
 					// Return Chromebook
-					ResourceCentre.returnChromebook(timetableList);
+				
 				} else {
 					System.out.println("Invalid type");
 				}
@@ -253,21 +253,7 @@ public class ResourceCentre {
 			timetableList.remove(pos);
 		}
 	}
-	
-	
-
-	// ================================= Option 4 Return an item (CRUD -
-	// Update)=================================
-
-	public static boolean doReturnChromebook(ArrayList<TimeTable> chromebookList, String tag) {
-		boolean isReturned = false;
-		// write your code here
-		return isReturned;
-	}
-
-	public static void returnChromebook(ArrayList<TimeTable> chromebookList) {
-		// write your code here
-
-	}
-
 }
+	
+	
+
