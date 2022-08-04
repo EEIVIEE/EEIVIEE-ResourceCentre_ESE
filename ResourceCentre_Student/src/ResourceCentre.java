@@ -52,19 +52,20 @@ public class ResourceCentre {
 
 			} else if (option == 4) {
 				// Loan item
-				ResourceCentre.setHeader("LOAN");
+				ResourceCentre.setHeader("DELETE");
 				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Camcorder");
-				System.out.println("2. Chromebook");
+				System.out.println("1. Tuition");
+				System.out.println("2. Timetable");
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == 1) {
-					// Loan camcorder
+					// Delete Tuition
 
 				} else if (itemType == 2) {
-					// Loan Chromebook
-					ResourceCentre.loanChromebook(timetableList);
+					// Delete Timetable
+					String Tuition = Helper.readString("Enter name of the Tuition > ");
+					ResourceCentre.removeTimetable(timetableList, Tuition);
 				} else {
 					System.out.println("Invalid type");
 				}
@@ -102,7 +103,7 @@ public class ResourceCentre {
 		System.out.println("1. Display Inventory");
 		System.out.println("2. Timetable registration");
 		System.out.println("3. Add item");
-		System.out.println("4. Loan item");
+		System.out.println("4. Delete item");
 		System.out.println("5. Return item");
 		System.out.println("6. Quit");
 		Helper.line(80, "-");
@@ -161,7 +162,7 @@ public class ResourceCentre {
 		// write your code here
 		for (int i = 0; i < timetableList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n", timetableList.get(i).getTuition(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n", timetableList.get(i).getTitle(),
 					timetableList.get(i).getDuration(), timetableList.get(i).getStart_time(),
 					timetableList.get(i).getEnd_time(), timetableList.get(i).getMode(),
 					timetableList.get(i).getPrice());
@@ -220,18 +221,24 @@ public class ResourceCentre {
 
 	}
 
-	// ================================= Option 3 Loan an item (CRUD - Update)
+	// ================================= Option 3 Delete an item (CRUD - Update)
 	// =================================
-
-	public static boolean doLoanChromebook(ArrayList<TimeTable> chromebookList, String tag, String dueDate) {
+	public static void removeTimetable(ArrayList<TimeTable> timetableList, String name) {
+		int pos = -1;
 		// write your code here
-		return true;
+		for (int i = 0; i < timetableList.size(); i++) {
+			if(timetableList.get(i).getTitle().equalsIgnoreCase(name)) {
+				pos = i;
+			}
+		}
+		if(pos == -1) {
+			System.out.println("Timetable not found");
+		}else {
+			timetableList.remove(pos);
+		}
 	}
-
-	public static void loanChromebook(ArrayList<TimeTable> chromebookList) {
-		// write your code here
-
-	}
+	
+	
 
 	// ================================= Option 4 Return an item (CRUD -
 	// Update)=================================

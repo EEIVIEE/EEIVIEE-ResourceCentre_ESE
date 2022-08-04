@@ -1,3 +1,4 @@
+
 public class TimeTable{
 	private String title;
 	private String duration;
@@ -17,7 +18,7 @@ public class TimeTable{
 
 	
 	
-	public String getTuition() {
+	public String getTitle() {
 		return title;
 	}
 
