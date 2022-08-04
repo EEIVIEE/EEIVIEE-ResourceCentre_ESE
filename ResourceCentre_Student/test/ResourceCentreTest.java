@@ -15,9 +15,13 @@ public class ResourceCentreTest {
 	private TimeTable cb1;
 	private TimeTable cb2;
 	private TimeTable cb3;
+	private Student s1;
+	private Student s2;
+	private Student s3;
 	
 	private ArrayList<Tuition> tuitionList;
 	private ArrayList<TimeTable> timetableList;
+	private ArrayList<Student>studentList;
 	
 	public ResourceCentreTest() {
 		super();
@@ -32,10 +36,13 @@ public class ResourceCentreTest {
 		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		s1=new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil");
+		s2=new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil");
 		
 		
 		tuitionList= new ArrayList<Tuition>();
 		timetableList= new ArrayList<TimeTable>();
+		studentList=new ArrayList<Student>();
 	}
 
 	
@@ -74,6 +81,24 @@ public class ResourceCentreTest {
 				ResourceCentre.addTimetable(timetableList, cb3);
 				assertEquals("Test that Timetable arraylist size is 3?", 3, timetableList.size());
 				assertSame("Test that Timetable is added same as 3rd item of the list?", cb3, timetableList.get(2));
+	}
+	@Test
+	public void testAddStudent() {
+		// Item list is not null, so that can add a new items
+				assertNotNull("Test if there is valid student arraylist to add to", studentList);
+				
+				//Given an empty list, after adding 1 item, the size of the list is 1
+				ResourceCentre.addStudent(studentList, s1);		
+				assertEquals("Test if that student arraylist size is 1?", 1, studentList.size());
+				
+				//The item just added is as same as the first item of the list
+				assertSame("Test that student is added same as 1st item of the list?", s1, studentList.get(0));
+				
+				//Add another item. test The size of the list is 2?
+				ResourceCentre.addStudent(studentList, s2);
+				ResourceCentre.addStudent(studentList, s3);
+				assertEquals("Test that student arraylist size is 3?", 3, studentList.size());
+				assertSame("Test that student is added same as 3rd item of the list?", s3, studentList.get(2));
 	}
 	
 	@Test
@@ -125,6 +150,30 @@ public class ResourceCentreTest {
 				assertEquals("Check that RetrieveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
 				
 	}
+	@Test
+	public void testRetrieveAllStudents() {
+		// Test if Item list is not null but empty, so that can add a new item
+				assertNotNull("Test if there is valid student arraylist to add to", studentList);
+				
+				//test if the list of camcorders retrieved from the SourceCentre is empty
+				String allStudents= ResourceCentre.retrieveAllStudents(studentList);
+				String testOutput = "";
+				assertEquals("Check that RetriveAllStudentlist is equal to testOutput", testOutput, allStudents);
+						
+				//Given an empty list, after adding 2 items, test if the size of the list is 2
+				ResourceCentre.addStudent(studentList, s1);
+				ResourceCentre.addStudent(studentList, s2);
+				assertEquals("Test if that student arraylist size is 2?", 2, studentList.size());
+				
+				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+				allStudents= ResourceCentre.retrieveAllStudents(studentList);
+
+				testOutput = String.format("%-10s %-10s %-10d %-20s %-15s %-10s %-10s\n", "Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil");
+				testOutput += String.format("%-10s %-10s %-10d %-20s %-15s %-10s %-10s\n", "Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil");
+				
+				assertEquals("Check that RetrieveAllStudentlist is equal to testOutput", testOutput, allStudents);
+				
+	}
 	
 	@Test
 	public void testRemoveTuition() {
@@ -148,6 +197,19 @@ public class ResourceCentreTest {
 		ResourceCentre.removeTimetable(timetableList, "Math");
 		
 		assertEquals("test if there is no longer a valid Timetable to delete from",0, timetableList.size());
+		
+	}
+	
+	@Test
+	public void testRemoveStudents() {
+		//boundary
+		assertNotNull("test if there is valid student arraylist to delete from", studentList);
+		
+		ResourceCentre.addStudent(studentList, s1);
+		// normal
+		ResourceCentre.removeStudent(studentList, "Matthew");
+		
+		assertEquals("test if there is no longer a valid Student to delete from",0, studentList.size());
 		
 	}
 
