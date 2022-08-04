@@ -5,7 +5,10 @@ public class TimeTable{
 	private String start_time;
 	private String end_time;
 	private String mode;
+	private boolean status;
 
+	
+	
 	public TimeTable(String title, String duration, int price, String start_time, String end_time, String mode) {
 		this.title = title;
 		this.duration = duration;
@@ -13,13 +16,16 @@ public class TimeTable{
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.mode = mode;
+		this.status = true;
 	}
 
-	
+
+
 	
 	public String getTitle() {
 		return title;
 	}
+
 
 
 
@@ -29,9 +35,11 @@ public class TimeTable{
 
 
 
+
 	public int getPrice() {
 		return price;
 	}
+
 
 
 
@@ -41,9 +49,11 @@ public class TimeTable{
 
 
 
+
 	public String getEnd_time() {
 		return end_time;
 	}
+
 
 
 
@@ -53,16 +63,32 @@ public class TimeTable{
 
 
 
-	public void setTuition(String title) {
+
+	public String showAvailability(boolean status) {
+		String avail;
+
+		if (status == true) {
+			avail = "Yes";
+		} else {
+			avail = "No";
+		}
+		return avail;
+	}
+
+
+
+
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
 
-	
+
 
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
+
 
 
 
@@ -72,9 +98,11 @@ public class TimeTable{
 
 
 
+
 	public void setStart_time(String start_time) {
 		this.start_time = start_time;
 	}
+
 
 
 
@@ -84,9 +112,18 @@ public class TimeTable{
 
 
 
+
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
+
+
+
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 
 
 
