@@ -52,7 +52,7 @@ public class ResourceCentre {
 
 				} else if (itemType==3) {
 					Student s = inputStudent();
-					ResourceCentreStudent.addStudent(studentList, s);
+					ResourceCentre.addStudent(studentList, s);
 					System.out.println("Student successfully added.");
 				}
 				else {
@@ -64,6 +64,7 @@ public class ResourceCentre {
 				ResourceCentre.setHeader("DELETE");
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
+				System.out.println("3. Student");
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -74,12 +75,16 @@ public class ResourceCentre {
 					// Loan Chromebook
 					String tt = Helper.readString("Enter name of timetable > ");
 					ResourceCentre.removeTimetable(timetableList, tt);
-				} else {
+				}else if (itemType==3) {
+					String name= Helper.readString("Enter the name of student to delete > ");
+					ResourceCentre.removeStudent(studentList, name);
+				}
+				else {
 					System.out.println("Invalid type");
 				}
 
 			} else if (option ==5) {
-				ResourceCentreStudent.viewAllStudents(studentList);
+				ResourceCentre.viewAllStudents(studentList);
 			}
 		}
 
@@ -271,10 +276,26 @@ public class ResourceCentre {
 		}
 	}
 	
+	private static void removeStudent(ArrayList<Student> studentList, String name) {
+		int position = -1;
+		for (int i=0; i<studentList.size(); i++) {
+			if (studentList.get(i).getName().equalsIgnoreCase(name)) {
+				position=i;
+			}
+		}
+		
+		if (position == -1) {
+			System.out.println("Invalid Student Name");
+		}else {
+			studentList.remove(position);
+		}
+		
+	}
+	
 	//================================= Option 2 View Students (CRUD- Read) =======================================
 	
 	private static void viewAllStudents(ArrayList<Student> studentList) {
-		ResourceCentreStudent.setHeader("STUDENT LIST");
+		ResourceCentre.setHeader("STUDENT LIST");
 		String output = String.format("%-10s %-10s %-10s %-20s %-15s %-10s %-20s\n", "NAME", "GENDER",
 				"MOBILE", "EMAIL","DATEB OF BIRTH", "RESIDENCE", "INTEREST");
 		output+=retrieveAllStudents(studentList);
