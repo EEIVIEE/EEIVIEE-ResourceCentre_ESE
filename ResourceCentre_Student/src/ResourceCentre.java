@@ -186,7 +186,7 @@ public class ResourceCentre {
 
 	}
 	
-	private static Student inputStudent() {
+	public static Student inputStudent() {
 		String name= Helper.readString("Enter Student name > ");
 		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
 		int mobile= Helper.readInt("Enter Student phone number > ");
@@ -243,7 +243,7 @@ public class ResourceCentre {
 
 	}
 	
-	private static void addStudent(ArrayList<Student> studentList, Student s) {
+	public static void addStudent(ArrayList<Student> studentList, Student s) {
 		studentList.add(s);
 		
 	}
@@ -282,7 +282,7 @@ public class ResourceCentre {
 		}
 	}
 	
-	private static void removeStudent(ArrayList<Student> studentList, String name) {
+	public static void removeStudent(ArrayList<Student> studentList, String name) {
 		int position = -1;
 		for (int i=0; i<studentList.size(); i++) {
 			if (studentList.get(i).getName().equalsIgnoreCase(name)) {
@@ -300,7 +300,7 @@ public class ResourceCentre {
 	
 	//================================= Option 2 View Students (CRUD- Read) =======================================
 	
-	private static void viewAllStudents(ArrayList<Student> studentList) {
+	public static void viewAllStudents(ArrayList<Student> studentList) {
 		ResourceCentre.setHeader("STUDENT LIST");
 		String output = String.format("%-10s %-10s %-10s %-20s %-15s %-10s %-20s\n", "NAME", "GENDER",
 				"MOBILE", "EMAIL","DATEB OF BIRTH", "RESIDENCE", "INTEREST");
@@ -310,7 +310,7 @@ public class ResourceCentre {
 	}
 	
 
-	private static String retrieveAllStudents(ArrayList<Student> studentList) {
+	public static String retrieveAllStudents(ArrayList<Student> studentList) {
 		String output="";
 		for (int i=0; i<studentList.size(); i++) {
 			output += String.format("%-10s %-10s %-10d %-20s %-15s %-10s %-10s\n", studentList.get(i).getName(), studentList.get(i).getGender(),
