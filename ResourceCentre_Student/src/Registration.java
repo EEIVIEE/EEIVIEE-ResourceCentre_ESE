@@ -1,16 +1,16 @@
 
 public class Registration {
 
-	private int num;
+	private int regnum;
 	private int regid;
 	private int tuitionid;
 	private String email;
-	private String status;
+	private String status; 
 	private String datetime;
 
-	public Registration(int num, int regid, int tuitionid, String email, String status, String datetime) {
+	public Registration(int regnum, int regid, int tuitionid, String email, String status, String datetime) {
 		super();
-		this.num = num;
+		this.regnum = regnum;
 		this.regid = regid;
 		this.tuitionid = tuitionid;
 		this.email = email;
@@ -19,11 +19,11 @@ public class Registration {
 	}
 
 	public int getNum() {
-		return num;
+		return regnum;
 	}
 
 	public void setNum(int num) {
-		this.num = num;
+		this.regnum = num;
 	}
 
 	public int getRegid() {

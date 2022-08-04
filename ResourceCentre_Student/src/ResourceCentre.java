@@ -22,15 +22,16 @@ public class ResourceCentre {
 				ResourceCentre.viewAllTimetable(timetableList);
 
 			} else if (option == 2) {
-				//Register for tuition timetable
-				System.out.println("Registration details");
+				// Register for tuition timetable
+				System.out.println("===REGISTRATION DETAILS===");
+				Registration timetable = inputRegDetails();
 
 			} else if (option == 3) {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");
 				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Tuition");
-				System.out.println("2. Timetable");
+				System.out.println("1. Camcorder");
+				System.out.println("2. Chromebook");
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -42,8 +43,8 @@ public class ResourceCentre {
 
 				} else if (itemType == 2) {
 					// Add a Chromebook
-					TimeTable tt = inputTimetable();
-					ResourceCentre.addTimetable(timetableList, tt);
+					TimeTable cb = inputTimetable();
+					ResourceCentre.addTimetable(timetableList, cb);
 					System.out.println("Chromebook added");
 
 				} else {
@@ -60,16 +61,15 @@ public class ResourceCentre {
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == 1) {
-					// Delete Tuition
+					// Loan camcorder
 
 				} else if (itemType == 2) {
-					// Delete Timetable
-					String Tuition = Helper.readString("Enter name of the Tuition > ");
-					ResourceCentre.removeTimetable(timetableList, Tuition);
+					// Loan Chromebook
+					String tt = Helper.readString("Enter name of timetable > ");
+					ResourceCentre.removeTimetable(timetableList, tt);
 				} else {
 					System.out.println("Invalid type");
 				}
-				
 
 			} else if (option == 5) {
 				// Return item
@@ -103,7 +103,7 @@ public class ResourceCentre {
 		System.out.println("1. Display Inventory");
 		System.out.println("2. Timetable registration");
 		System.out.println("3. Add item");
-		System.out.println("4. Delete item");
+		System.out.println("4. Loan item");
 		System.out.println("5. Return item");
 		System.out.println("6. Quit");
 		Helper.line(80, "-");
@@ -134,17 +134,10 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
-					tuitionList.get(i).getTuitionTitle(), 
-					tuitionList.get(i).getTuitionDescription(),
-					tuitionList.get(i).getSubjectGroupName(),
-					tuitionList.get(i).getTuitionDuration(),
-					tuitionList.get(i).getPreRequisite(),
-					tuitionList.get(i).getTeacher(),
-					tuitionList.get(i).getYearStart());
-
-
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", tuitionList.get(i).getTuitionTitle(),
+					tuitionList.get(i).getTuitionCode(), tuitionList.get(i).getTuitionDescription(),
+					tuitionList.get(i).getSubjectGroupName(), tuitionList.get(i).getTuitionDuration(),
+					tuitionList.get(i).getPreRequisite());
 		}
 		return output;
 	}
@@ -177,17 +170,33 @@ public class ResourceCentre {
 		System.out.println(output);
 	}
 
-	// ================================= Option 2 Add an item (CRUD - Create)
+	// ================================= Option 2 Register tuition timetable (CRUD -
+	// Create)
+	// =================================
+	public static Registration inputRegDetails() {
+		int regnum = Helper.readInt("Enter registration number > ");
+		int regid = Helper.readInt("Enter registration id > ");
+		int tuitionid = Helper.readInt("Enter tuition id >");
+		String email = Helper.readString("Enter email > ");
+		String status = Helper.readString("Enter Status >");
+		String datetime = Helper.readString("Enter date time > ");
+
+		Registration reg = new Registration(regnum, regid, tuitionid, email, status, datetime);
+		return reg;
+
+	}
+
+	// ================================= Option 3 Add an item (CRUD - Create)
 	// =================================
 	public static Tuition inputTuition() {
-		String code = Helper.readString("Enter asset tag > ");
-		String title = Helper.readString("Enter description > ");
-		String subjectGroup = Helper.readString("Enter optical zoom > ");
-		String description = Helper.readString("Enter optical zoom > ");
-		String duration = Helper.readString("Enter optical zoom > ");
-		String preRequisite = Helper.readString("Enter optical zoom > ");
-		String teacher = Helper.readString("Enter optical zoom > ");
-		String yearStart = Helper.readString("Enter optical zoom > ");
+		String code = Helper.readString("Enter code > ");
+		String title = Helper.readString("Enter title > ");
+		String subjectGroup = Helper.readString("Enter SubjectGroup > ");
+		String description = Helper.readString("Enter description > ");
+		String duration = Helper.readString("Enter duration > ");
+		String preRequisite = Helper.readString("Enter pre-requisite > ");
+		String teacher = Helper.readString("Enter teacher > ");
+		String yearStart = Helper.readString("Enter yearStart > ");
 
 		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
 		return t;
@@ -202,12 +211,12 @@ public class ResourceCentre {
 
 	public static TimeTable inputTimetable() {
 		// write your code here
-		String title = Helper.readString("Enter Tuition Title > ");
-		String duration = Helper.readString("Enter duration > ");
-		int price = Helper.readInt("Enter price > ");
-		String start_time = Helper.readString("Enter Start Time > ");
-		String end_time = Helper.readString("Enter End Time > ");
-		String mode = Helper.readString("Enter Mode > ");
+		String title = Helper.readString("Enter asset tag > ");
+		String duration = Helper.readString("Enter description > ");
+		int price = Helper.readInt("Enter optical zoom > ");
+		String start_time = Helper.readString("Enter optical zoom > ");
+		String end_time = Helper.readString("Enter optical zoom > ");
+		String mode = Helper.readString("Enter optical zoom > ");
 
 		TimeTable tt = new TimeTable(title, duration, price, start_time, end_time, mode);
 		return tt;
@@ -221,7 +230,7 @@ public class ResourceCentre {
 
 	}
 
-	// ================================= Option 3 Delete an item (CRUD - Update)
+	// ================================= Option 4 Loan an item (CRUD - Update)
 	// =================================
 	
 	public static void removeTuition(ArrayList<Tuition> tuitionList, String code ) {
@@ -253,8 +262,8 @@ public class ResourceCentre {
 			timetableList.remove(pos);
 		}
 	}
-	//update
 }
-	
+
+
 	
 
