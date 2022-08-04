@@ -72,7 +72,7 @@ public class ResourceCentreTest {
 				//Add another item. test The size of the list is 2?
 				ResourceCentre.addTimetable(timetableList, cb2);
 				ResourceCentre.addTimetable(timetableList, cb3);
-				assertEquals("Test that Timmetable arraylist size is 3?", 3, timetableList.size());
+				assertEquals("Test that Timetable arraylist size is 3?", 3, timetableList.size());
 				assertSame("Test that Timetable is added same as 3rd item of the list?", cb3, timetableList.get(2));
 	}
 	
@@ -104,17 +104,17 @@ public class ResourceCentreTest {
 	@Test
 	public void testRetrieveAllTimetable() {
 		// Test if Item list is not null but empty, so that can add a new item
-				assertNotNull("Test if there is valid Camcorder arraylist to add to", timetableList);
+				assertNotNull("Test if there is valid Timetable arraylist to add to", timetableList);
 				
 				//test if the list of camcorders retrieved from the SourceCentre is empty
 				String allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
 				String testOutput = "";
-				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
+				assertEquals("Check that RetriveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
 						
 				//Given an empty list, after adding 2 items, test if the size of the list is 2
 				ResourceCentre.addTimetable(timetableList, cb1);
 				ResourceCentre.addTimetable(timetableList, cb2);
-				assertEquals("Test if that Camcorder arraylist size is 2?", 2, timetableList.size());
+				assertEquals("Test if that Timetable arraylist size is 2?", 2, timetableList.size());
 				
 				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
 				allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
@@ -122,7 +122,7 @@ public class ResourceCentreTest {
 				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","Math", "1hr 30 mins", "6:30 PM", "8:30 PM", null,35);
 				testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","English", "1hr 30 mins", "6:30 PM", "8:30 PM", null, 35);
 				
-				assertEquals("Check that ViewAllCamcorderlist", testOutput, allTimetable);
+				assertEquals("Check that RetrieveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
 				
 	}
 	
