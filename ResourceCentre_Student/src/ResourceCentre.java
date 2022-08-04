@@ -7,14 +7,15 @@ public class ResourceCentre {
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
 		ArrayList<TimeTable> timetableList = new ArrayList<TimeTable>();
 		ArrayList<Student> studentList = new ArrayList<Student>();
+		ArrayList<Registration> registrationList = new ArrayList<Registration>();
 
-		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", null));
+		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", "Face to Face"));
 		studentList.add(new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil"));
 		studentList.add(new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil"));
 
 		int option = 0;
 
-		while (option != 6) {
+		while (option != 7) {
 
 			ResourceCentre.menu();
 
@@ -27,40 +28,43 @@ public class ResourceCentre {
 			} else if (option == 2) {
 				// Register for tuition timetable
 				System.out.println("===REGISTRATION DETAILS===");
-				Registration timetable = inputRegDetails();
+				Registration register = inputRegistration(timetableList);
+				ResourceCentre.addRegistration(registrationList, register);
+
 
 			} else if (option == 3) {
+				System.out.println("===REGISTER STUDENT===");
+				
+				Student s = inputStudent();
+				ResourceCentre.addStudent(studentList, s);
+				System.out.println("Student successfully added.");
+			} else if (option == 4) {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
-				System.out.println("3. Students");
+				
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
 				if (itemType == 1) {
-					// Add a camcorder
+					// Add a Tuitions
 					Tuition cc = inputTuition();
 					ResourceCentre.addTuiton(tuitionList, cc);
 					System.out.println("Tuition added");
 
 				} else if (itemType == 2) {
-					// Add a Chromebook
+					// Add a TimeTable
 					TimeTable cb = inputTimetable();
 					ResourceCentre.addTimetable(timetableList, cb);
 					System.out.println("Timetable added");
 
-				} else if (itemType==3) {
-					Student s = inputStudent();
-					ResourceCentre.addStudent(studentList, s);
-					System.out.println("Student successfully added.");
-				}
-				else {
+				} else {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 4) {
-				// Loan item
+			} else if (option == 5) {
+				// Delete item
 				ResourceCentre.setHeader("DELETE");
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
@@ -83,7 +87,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option ==5) {
+			} else if (option ==6) {
 				ResourceCentre.viewAllStudents(studentList);
 			}
 		}
@@ -94,10 +98,11 @@ public class ResourceCentre {
 		ResourceCentre.setHeader("RESOURCE CENTRE APP");
 		System.out.println("1. Display Tuition/Timetable");
 		System.out.println("2. Timetable registration");
-		System.out.println("3. Add Tuition/Timetable/Student");
-		System.out.println("4. Delete Tuition/Timetable/Student");
-		System.out.println("5. Display Student");
-		System.out.println("6. Quit");
+		System.out.println("3. Register student");
+		System.out.println("4. Add Tuition/Timetable");
+		System.out.println("5. Delete Tuition/Timetable/Student");
+		System.out.println("6. Display Student");
+		System.out.println("7. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -147,17 +152,17 @@ public class ResourceCentre {
 		// write your code here
 		for (int i = 0; i < timetableList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n", timetableList.get(i).getTitle(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20d %-20s\n", timetableList.get(i).getTitle(),
 					timetableList.get(i).getDuration(), timetableList.get(i).getStart_time(),
 					timetableList.get(i).getEnd_time(), timetableList.get(i).getMode(),
-					timetableList.get(i).getPrice());
+					timetableList.get(i).getPrice(), timetableList.get(i).showAvailability(timetableList.get(i).getStatus()));
 		}
 		return output;
 	}
 
 	public static void viewAllTimetable(ArrayList<TimeTable> timetableList) {
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", "TUITION NAME", "DURATION", "START TIME",
-				"END TIME", "MODE", "PRICE");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s\n", "TUITION NAME", "DURATION", "START TIME",
+				"END TIME", "MODE", "PRICE","STATUS");
 		output += retrieveAllTimetable(timetableList);
 		System.out.println(output);
 	}
@@ -167,25 +172,27 @@ public class ResourceCentre {
 	// ================================= Option 2 Register tuition timetable (CRUD -
 	// Create)
 	// =================================
-	public static Registration inputRegistration() {
+	public static Registration inputRegistration(ArrayList<TimeTable> timetableList) {
+		ResourceCentre.viewAllTimetable(timetableList);
+		Registration reg = null;
 		int regnum = Helper.readInt("Enter registration number > ");
 		int regid = Helper.readInt("Enter registration id > ");
 		int tuitionid = Helper.readInt("Enter tuition id >");
 		String email = Helper.readString("Enter email > ");
 		String status = Helper.readString("Enter Status >");
 		String datetime = Helper.readString("Enter date time > ");
-
-		Registration reg = new Registration(regnum, regid, tuitionid, email, status, datetime);
+		
+		Boolean isRegistered= doRegisterTimetable(timetableList, tuitionid);
+		if (isRegistered == false) {
+			System.out.println("Invalid tuitionId");
+		} else {
+			System.out.println("Registered for " + tuitionid);
+			reg = new Registration(regnum, regid, tuitionid, email, status, datetime);
+		}
+		
 		return reg;
-
+		
 	}
-	
-	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
-
-		RegistrationList.add(r);
-
-	}
-	
 	public static Student inputStudent() {
 		String name= Helper.readString("Enter Student name > ");
 		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
@@ -197,7 +204,33 @@ public class ResourceCentre {
 		
 		Student s = new Student(name, gender, mobile, email, dob, residence, interest);
 		return s;
+		
 	}
+	
+	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
+
+		RegistrationList.add(r);
+
+	}
+	
+	public static boolean doRegisterTimetable(ArrayList<TimeTable> timetableList, int tuitionId) {
+		// write your code here
+		boolean isRegistered = false;
+
+		for (int i = 0; i < timetableList.size(); i++) {
+			
+			if (tuitionId == i && timetableList.get(i).getStatus() == true) {
+				
+				timetableList.get(i).setStatus(false);;
+				
+				isRegistered = true;
+				
+			}
+		}
+		return isRegistered;
+	}
+	
+
 
 	// ================================= Option 3 Add an item (CRUD - Create)
 	// =================================

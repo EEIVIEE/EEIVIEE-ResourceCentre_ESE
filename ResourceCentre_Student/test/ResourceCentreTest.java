@@ -33,9 +33,9 @@ public class ResourceCentreTest {
 		cc1 = new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
 		cc2 = new Tuition("CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
 		cc3 = new Tuition("CC0013", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
-		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
-		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
-		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
+		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
+		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
 		s1=new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil");
 		s2=new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil");
 		

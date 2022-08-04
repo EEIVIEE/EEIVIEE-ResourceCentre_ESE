@@ -60,6 +60,10 @@ public class TimeTable{
 	public String getMode() {
 		return mode;
 	}
+	
+	public boolean getStatus() {
+		return status;
+	}
 
 
 
