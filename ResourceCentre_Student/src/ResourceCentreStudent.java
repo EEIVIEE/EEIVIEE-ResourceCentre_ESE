@@ -21,7 +21,7 @@ public class ResourceCentreStudent {
 				ResourceCentreStudent.viewAllStudents(studentList);
 				
 			}else if (option ==3) {
-				//Delete Student Option Here
+				//Delete Student Option Here.
 				
 			}else if (option == 4) {
 				System.out.println("Goodbye");
