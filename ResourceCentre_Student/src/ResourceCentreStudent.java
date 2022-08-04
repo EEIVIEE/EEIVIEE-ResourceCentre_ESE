@@ -21,7 +21,8 @@ public class ResourceCentreStudent {
 				ResourceCentreStudent.viewAllStudents(studentList);
 				
 			}else if (option ==3) {
-				//Delete Student Option Here.
+				String name= Helper.readString("Enter the name of student to delete > ");
+				ResourceCentreStudent.removeStudent(studentList, name);
 				
 			}else if (option == 4) {
 				System.out.println("Goodbye");
@@ -89,6 +90,24 @@ public class ResourceCentreStudent {
 					studentList.get(i).getMobile(), studentList.get(i).getEmail(),studentList.get(i).getDob(), studentList.get(i).getResidence(), studentList.get(i).getInterest());
 		}
 		return output;
+	}
+	
+	//================================= Option 3 Delete Students (CRUD- Update) =======================================
+	
+	private static void removeStudent(ArrayList<Student> studentList, String name) {
+		int position = -1;
+		for (int i=0; i<studentList.size(); i++) {
+			if (studentList.get(i).getName().equalsIgnoreCase(name)) {
+				position=i;
+			}
+		}
+		
+		if (position == -1) {
+			System.out.println("Invalid Student Name");
+		}else {
+			studentList.remove(position);
+		}
+		
 	}
 	
 
