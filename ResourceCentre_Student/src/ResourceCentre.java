@@ -167,14 +167,14 @@ public class ResourceCentre {
 
 	//================================= Option 2 Add an item (CRUD - Create) =================================
 	public static Tuition inputTuition() {
-		String code = Helper.readString("Enter asset tag > ");
-		String title = Helper.readString("Enter description > ");
-		String subjectGroup = Helper.readString("Enter optical zoom > ");
-		String description = Helper.readString("Enter optical zoom > ");
-		String duration = Helper.readString("Enter optical zoom > ");
-		String preRequisite = Helper.readString("Enter optical zoom > ");
-		String teacher = Helper.readString("Enter optical zoom > ");
-		String yearStart = Helper.readString("Enter optical zoom > ");
+		String code = Helper.readString("Enter tuition code > ");
+		String title = Helper.readString("Enter tuition title > ");
+		String subjectGroup = Helper.readString("Enter Subject Group > ");
+		String description = Helper.readString("Enter description > ");
+		String duration = Helper.readString("Enter duration > ");
+		String preRequisite = Helper.readString("Enter pre-requisite > ");
+		String teacher = Helper.readString("Enter teacher > ");
+		String yearStart = Helper.readString("Enter year start > ");
 		
 		Tuition t= new Tuition(code, title, subjectGroup, description,
 				duration, preRequisite,teacher,yearStart);
