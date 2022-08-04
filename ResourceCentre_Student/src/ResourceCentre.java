@@ -150,10 +150,10 @@ public class ResourceCentre {
 		return output;
 	}
 
-	public static void viewAllTimetable(ArrayList<TimeTable> chromebookList) {
+	public static void viewAllTimetable(ArrayList<TimeTable> timetableList) {
 		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", "TUITION NAME", "DURATION", "START TIME",
 				"END TIME", "MODE", "PRICE");
-		output += retrieveAllTimetable(chromebookList);
+		output += retrieveAllTimetable(timetableList);
 		System.out.println(output);
 	}
 	
