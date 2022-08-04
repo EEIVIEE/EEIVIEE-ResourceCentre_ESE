@@ -144,8 +144,8 @@ public class ResourceCentreTest {
 				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
 				allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
 
-				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","Math", "1hr 30 mins", "6:30 PM", "8:30 PM", null,35);
-				testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20d\n","English", "1hr 30 mins", "6:30 PM", "8:30 PM", null, 35);
+				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20d %-20s\n","Math", "1hr 30 mins", "6:30 PM", "8:30 PM", "Face-to=Face", 35, "Yes");
+				testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20d %-20s\n","English", "1hr 30 mins", "6:30 PM", "8:30 PM", "Face-to=Face", 35, "Yes");
 				
 				assertEquals("Check that RetrieveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
 				
