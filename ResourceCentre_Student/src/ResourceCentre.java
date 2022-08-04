@@ -223,6 +223,22 @@ public class ResourceCentre {
 
 	// ================================= Option 3 Delete an item (CRUD - Update)
 	// =================================
+	
+	public static void removeTuition(ArrayList<Tuition> tuitionList, String code ) {
+		int pos = -1;
+		// write your code here
+		for (int i = 0; i < tuitionList.size(); i++) {
+			if(tuitionList.get(i).getTuitionCode().equalsIgnoreCase(code)) {
+				pos = i;
+			}
+		}
+		if(pos == -1) {
+			System.out.println("Tuition not found");
+		}else {
+			tuitionList.remove(pos);
+		}
+	}
+	
 	public static void removeTimetable(ArrayList<TimeTable> timetableList, String name) {
 		int pos = -1;
 		// write your code here
