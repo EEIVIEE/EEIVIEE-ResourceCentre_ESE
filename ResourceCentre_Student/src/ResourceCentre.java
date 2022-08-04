@@ -29,8 +29,8 @@ public class ResourceCentre {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");
 				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Camcorder");
-				System.out.println("2. Chromebook");
+				System.out.println("1. Tuition");
+				System.out.println("2. Timetable");
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -42,8 +42,8 @@ public class ResourceCentre {
 
 				} else if (itemType == 2) {
 					// Add a Chromebook
-					TimeTable cb = inputTimetable();
-					ResourceCentre.addTimetable(timetableList, cb);
+					TimeTable tt = inputTimetable();
+					ResourceCentre.addTimetable(timetableList, tt);
 					System.out.println("Chromebook added");
 
 				} else {
@@ -202,12 +202,12 @@ public class ResourceCentre {
 
 	public static TimeTable inputTimetable() {
 		// write your code here
-		String title = Helper.readString("Enter asset tag > ");
-		String duration = Helper.readString("Enter description > ");
-		int price = Helper.readInt("Enter optical zoom > ");
-		String start_time = Helper.readString("Enter optical zoom > ");
-		String end_time = Helper.readString("Enter optical zoom > ");
-		String mode = Helper.readString("Enter optical zoom > ");
+		String title = Helper.readString("Enter Tuition Title > ");
+		String duration = Helper.readString("Enter duration > ");
+		int price = Helper.readInt("Enter price > ");
+		String start_time = Helper.readString("Enter Start Time > ");
+		String end_time = Helper.readString("Enter End Time > ");
+		String mode = Helper.readString("Enter Mode > ");
 
 		TimeTable tt = new TimeTable(title, duration, price, start_time, end_time, mode);
 		return tt;
