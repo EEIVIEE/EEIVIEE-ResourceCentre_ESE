@@ -28,9 +28,9 @@ public class ResourceCentreTest {
 		cc1 = new Tuition("CC0011", "Nikon HDSLR", 40);
 		cc2 = new Tuition("CC0012", "Sony DSC-RX100M7", 20);
 		cc3 = new Tuition("CC0013", "panasoni DSC-RX100M7", 30);
-		cb1 = new TimeTable("CB0011", "My Google Chromebook 1st", "Mac OS");
-		cb2 = new TimeTable("CB0012", "SAMSUNG Chromebook 4+", "Win 10");
-		cb3 = new TimeTable("CB0013", "HUAWEI Magicbook 100+", "Mac 10");
+		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
+		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", null);
 		
 		
 		camcorderList= new ArrayList<Tuition>();
@@ -68,7 +68,7 @@ public class ResourceCentreTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
 		
 		//test if the list of camcorders retrieved from the SourceCentre is empty
-		String allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
+		String allCamcorder= ResourceCentre.retrieveAllTuition(camcorderList);
 		String testOutput = "";
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allCamcorder);
 				
@@ -78,7 +78,7 @@ public class ResourceCentreTest {
 		assertEquals("Test if that Camcorder arraylist size is 2?", 2, camcorderList.size());
 		
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
-		allCamcorder= ResourceCentre.retrieveAllCamcorder(camcorderList);
+		allCamcorder= ResourceCentre.retrieveAllTuition(camcorderList);
 
 		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0011", "Nikon HDSLR", "Yes", "", 40);
 		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CC0012", "Sony DSC-RX100M7", "Yes", "", 20);

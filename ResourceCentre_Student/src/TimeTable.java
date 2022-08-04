@@ -1,14 +1,14 @@
 
 public class TimeTable{
-	private String tuition;
+	private String title;
 	private String duration;
 	private int price;
-	private int start_time;
-	private int end_time;
+	private String start_time;
+	private String end_time;
 	private String mode;
 
-	public TimeTable(String tuition, String duration, int price, int start_time, int end_time, String mode) {
-		this.tuition = tuition;
+	public TimeTable(String title, String duration, int price, String start_time, String end_time, String mode) {
+		this.title = title;
 		this.duration = duration;
 		this.price = price;
 		this.start_time = start_time;
@@ -19,7 +19,7 @@ public class TimeTable{
 	
 	
 	public String getTuition() {
-		return tuition;
+		return title;
 	}
 
 
@@ -36,13 +36,13 @@ public class TimeTable{
 
 
 
-	public int getStart_time() {
+	public String getStart_time() {
 		return start_time;
 	}
 
 
 
-	public int getEnd_time() {
+	public String getEnd_time() {
 		return end_time;
 	}
 
@@ -54,11 +54,12 @@ public class TimeTable{
 
 
 
-	public void setTuition(String tuition) {
-		this.tuition = tuition;
+	public void setTuition(String title) {
+		this.title = title;
 	}
 
 
+	
 
 	public void setDuration(String duration) {
 		this.duration = duration;
@@ -72,13 +73,13 @@ public class TimeTable{
 
 
 
-	public void setStart_time(int start_time) {
+	public void setStart_time(String start_time) {
 		this.start_time = start_time;
 	}
 
 
 
-	public void setEnd_time(int end_time) {
+	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
 
