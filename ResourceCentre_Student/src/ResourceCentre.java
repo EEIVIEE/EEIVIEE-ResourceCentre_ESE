@@ -127,10 +127,10 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", tuitionList.get(i).getAssetTag(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", tuitionList.get(i).getAssetTag(),
 					tuitionList.get(i).getDescription(), 
 					ResourceCentre.showAvailability(tuitionList.get(i).getIsAvailable()),
-					tuitionList.get(i).getDueDate(),tuitionList.get(i).getOpticalZoom());
+					tuitionList.get(i).getDueDate(),tuitionList.get(i).getDescription());
 		}
 		return output;
 	}
@@ -167,7 +167,7 @@ public class ResourceCentre {
 	public static Tuition inputCamcorder() {
 		String tag = Helper.readString("Enter asset tag > ");
 		String description = Helper.readString("Enter description > ");
-		int zoom = Helper.readInt("Enter optical zoom > ");
+		String zoom = Helper.readString("Enter optical zoom > ");
 
 		Tuition cc= new Tuition(tag, description, zoom);
 		return cc;
