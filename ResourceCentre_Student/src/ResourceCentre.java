@@ -6,12 +6,15 @@ public class ResourceCentre {
 
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
 		ArrayList<TimeTable> timetableList = new ArrayList<TimeTable>();
+		ArrayList<Student> studentList = new ArrayList<Student>();
 
 		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", null));
+		studentList.add(new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil"));
+		studentList.add(new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil"));
 
 		int option = 0;
 
-		while (option != 5) {
+		while (option != 6) {
 
 			ResourceCentre.menu();
 
@@ -29,9 +32,9 @@ public class ResourceCentre {
 			} else if (option == 3) {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");
-				ResourceCentre.setHeader("ITEM TYPES");
-				System.out.println("1. Camcorder");
-				System.out.println("2. Chromebook");
+				System.out.println("1. Tuition");
+				System.out.println("2. Timetable");
+				System.out.println("3. Students");
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -39,22 +42,26 @@ public class ResourceCentre {
 					// Add a camcorder
 					Tuition cc = inputTuition();
 					ResourceCentre.addTuiton(tuitionList, cc);
-					System.out.println("Camcorder added");
+					System.out.println("Tuition added");
 
 				} else if (itemType == 2) {
 					// Add a Chromebook
 					TimeTable cb = inputTimetable();
 					ResourceCentre.addTimetable(timetableList, cb);
-					System.out.println("Chromebook added");
+					System.out.println("Timetable added");
 
-				} else {
+				} else if (itemType==3) {
+					Student s = inputStudent();
+					ResourceCentreStudent.addStudent(studentList, s);
+					System.out.println("Student successfully added.");
+				}
+				else {
 					System.out.println("Invalid type");
 				}
 
 			} else if (option == 4) {
 				// Loan item
 				ResourceCentre.setHeader("DELETE");
-				ResourceCentre.setHeader("ITEM TYPES");
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
 
@@ -71,18 +78,20 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} 
+			} else if (option ==5) {
+				ResourceCentreStudent.viewAllStudents(studentList);
+			}
 		}
 
 	}
 
 	public static void menu() {
 		ResourceCentre.setHeader("RESOURCE CENTRE APP");
-		System.out.println("1. Display Inventory");
+		System.out.println("1. Display Tuition/Timetable");
 		System.out.println("2. Timetable registration");
-		System.out.println("3. Add item");
-		System.out.println("4. Loan item");
-		System.out.println("5. Return item");
+		System.out.println("3. Add Tuition/Timetable/Student");
+		System.out.println("4. Delete Tuition/Timetable/Student");
+		System.out.println("5. Display Student");
 		System.out.println("6. Quit");
 		Helper.line(80, "-");
 
@@ -147,6 +156,8 @@ public class ResourceCentre {
 		output += retrieveAllTimetable(chromebookList);
 		System.out.println(output);
 	}
+	
+	
 
 	// ================================= Option 2 Register tuition timetable (CRUD -
 	// Create)
@@ -162,6 +173,19 @@ public class ResourceCentre {
 		Registration reg = new Registration(regnum, regid, tuitionid, email, status, datetime);
 		return reg;
 
+	}
+	
+	private static Student inputStudent() {
+		String name= Helper.readString("Enter Student name > ");
+		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
+		int mobile= Helper.readInt("Enter Student phone number > ");
+		String email= Helper.readString("Enter Student email > ");
+		String dob= Helper.readString("Enter Student date of birth (dd/mm/yy) > ");
+		String residence= Helper.readString("Enter Student residence > ");
+		String interest= Helper.readString("Enter Student interest > ");
+		
+		Student s = new Student(name, gender, mobile, email, dob, residence, interest);
+		return s;
 	}
 
 	// ================================= Option 3 Add an item (CRUD - Create)
@@ -189,12 +213,12 @@ public class ResourceCentre {
 
 	public static TimeTable inputTimetable() {
 		// write your code here
-		String title = Helper.readString("Enter asset tag > ");
-		String duration = Helper.readString("Enter description > ");
-		int price = Helper.readInt("Enter optical zoom > ");
-		String start_time = Helper.readString("Enter optical zoom > ");
-		String end_time = Helper.readString("Enter optical zoom > ");
-		String mode = Helper.readString("Enter optical zoom > ");
+		String title = Helper.readString("Enter tuition title > ");
+		String duration = Helper.readString("Enter duration > ");
+		int price = Helper.readInt("Enter price > ");
+		String start_time = Helper.readString("Enter start time > ");
+		String end_time = Helper.readString("Enter end time > ");
+		String mode = Helper.readString("Enter mode > ");
 
 		TimeTable tt = new TimeTable(title, duration, price, start_time, end_time, mode);
 		return tt;
@@ -207,6 +231,12 @@ public class ResourceCentre {
 		timetableList.add(tt);
 
 	}
+	
+	private static void addStudent(ArrayList<Student> studentList, Student s) {
+		studentList.add(s);
+		
+	}
+	
 
 	// ================================= Option 4 Loan an item (CRUD - Update)
 	// =================================
@@ -239,6 +269,27 @@ public class ResourceCentre {
 		}else {
 			timetableList.remove(pos);
 		}
+	}
+	
+	//================================= Option 2 View Students (CRUD- Read) =======================================
+	
+	private static void viewAllStudents(ArrayList<Student> studentList) {
+		ResourceCentreStudent.setHeader("STUDENT LIST");
+		String output = String.format("%-10s %-10s %-10s %-20s %-15s %-10s %-20s\n", "NAME", "GENDER",
+				"MOBILE", "EMAIL","DATEB OF BIRTH", "RESIDENCE", "INTEREST");
+		output+=retrieveAllStudents(studentList);
+		System.out.println(output);
+		
+	}
+	
+
+	private static String retrieveAllStudents(ArrayList<Student> studentList) {
+		String output="";
+		for (int i=0; i<studentList.size(); i++) {
+			output += String.format("%-10s %-10s %-10d %-20s %-15s %-10s %-10s\n", studentList.get(i).getName(), studentList.get(i).getGender(),
+					studentList.get(i).getMobile(), studentList.get(i).getEmail(),studentList.get(i).getDob(), studentList.get(i).getResidence(), studentList.get(i).getInterest());
+		}
+		return output;
 	}
 }
 
