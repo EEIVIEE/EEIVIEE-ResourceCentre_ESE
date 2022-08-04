@@ -7,6 +7,7 @@ private String tuitionDescription;
 private String tuitionDuration;
 private String preRequisite;
 private String teacher;
+private String yearStart;
 
 
 public Tuition(String tuitionCode, String tuitionTitle, String subjectGroupName, String tuitionDescription,
@@ -69,6 +70,6 @@ public void setTeacher(String teacher) {
 public void setYearStart(String yearStart) {
 	this.yearStart = yearStart;
 }
-private String yearStart;
+
 
 }
