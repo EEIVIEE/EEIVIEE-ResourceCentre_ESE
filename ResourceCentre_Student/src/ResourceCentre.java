@@ -23,6 +23,7 @@ public class ResourceCentre {
 
 			if (option == 1) {
 				// View all items
+				ResourceCentre.viewAllTuition(tuitionList);
 				ResourceCentre.viewAllTimetable(timetableList);
 
 			} else if (option == 2) {
@@ -141,8 +142,8 @@ public class ResourceCentre {
 
 	public static void viewAllTuition(ArrayList<Tuition> tuitionList) {
 		ResourceCentre.setHeader("CAMCORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ASSET TAG", "DESCRIPTION", "AVAILABLE",
-				"DUE DATE", "OPTICAL ZOOM");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", "CODE", "TITLE", "SUBJECT GROUP",
+				"DESCRIPTION", "DURATION", "PRE-REQUISITE", "TEACHER", "YEAR START");
 		output += retrieveAllTuition(tuitionList);
 		System.out.println(output);
 	}
