@@ -75,7 +75,8 @@ public class ResourceCentre {
 
 				if (itemType == 1) {
 					// Loan camcorder
-
+					String t = Helper.readString("Enter code of tuition > ");
+					ResourceCentre.removeTuition(tuitionList, t);
 				} else if (itemType == 2) {
 					// Loan Chromebook
 					String tt = Helper.readString("Enter name of timetable > ");
