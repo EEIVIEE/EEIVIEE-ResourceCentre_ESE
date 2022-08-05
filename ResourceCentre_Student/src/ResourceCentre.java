@@ -238,7 +238,7 @@ public class ResourceCentre {
 	public static Tuition inputTuition() {
 		String code = Helper.readString("Enter code > ");
 		String title = Helper.readString("Enter title > ");
-		String subjectGroup = Helper.readString("Enter SubjectGroup > ");
+		String subjectGroup = Helper.readString("Enter subject Group > ");
 		String description = Helper.readString("Enter description > ");
 		String duration = Helper.readString("Enter duration > ");
 		String preRequisite = Helper.readString("Enter pre-requisite > ");
