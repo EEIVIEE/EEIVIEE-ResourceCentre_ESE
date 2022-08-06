@@ -48,7 +48,13 @@ public class ResourceCentre {
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
-				 if (itemType == 2) {
+				if (itemType == 1) {
+					// Add a Tuitions
+					Tuition cc = inputTuition();
+					ResourceCentre.addTuiton(tuitionList, cc);
+					System.out.println("Tuition added");
+
+				} else if (itemType == 2) {
 					// Add a TimeTable
 					TimeTable cb = inputTimetable();
 					ResourceCentre.addTimetable(timetableList, cb);
@@ -127,18 +133,18 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
 					tuitionList.get(i).getTuitionTitle(), tuitionList.get(i).getTuitionDescription(),
 					tuitionList.get(i).getSubjectGroupName(), tuitionList.get(i).getTuitionDuration(),
-					tuitionList.get(i).getPreRequisite(),tuitionList.get(i).getTeacher(),tuitionList.get(i).getYearStart());
+					tuitionList.get(i).getPreRequisite(),tuitionList.get(i).getTeacher(),tuitionList.get(i).getYearStart(),tuitionList.get(i).getMode());
 		}
 		return output;
 	}
 
 	public static void viewAllTuition(ArrayList<Tuition> tuitionList) {
-		ResourceCentre.setHeader("CAMCORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", "CODE", "TITLE", "SUBJECT GROUP",
-				"DESCRIPTION", "DURATION", "PRE-REQUISITE", "TEACHER", "YEAR START");
+		ResourceCentre.setHeader("TUITION LIST");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n", "CODE", "TITLE", "SUBJECT GROUP",
+				"DESCRIPTION", "DURATION", "PRE-REQUISITE", "TEACHER", "YEAR START", "MODE");
 		output += retrieveAllTuition(tuitionList);
 		System.out.println(output);
 	}
@@ -217,7 +223,28 @@ public class ResourceCentre {
 
 	// ================================= Option 3 Add an item (CRUD - Create)
 	// =================================
-	
+	public static Tuition inputTuition() {
+		String code = Helper.readString("Enter code > ");
+		String title = Helper.readString("Enter title > ");
+		String subjectGroup = Helper.readString("Enter subject Group > ");
+		String description = Helper.readString("Enter description > ");
+		String duration = Helper.readString("Enter duration > ");
+		String preRequisite = Helper.readString("Enter pre-requisite > ");
+		String teacher = Helper.readString("Enter teacher > ");
+		String yearStart = Helper.readString("Enter yearStart > ");
+		String mode = Helper.readString("Enter Mode >");
+
+		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart, mode);
+		return t;
+
+	}
+
+	public static void addTuiton(ArrayList<Tuition> TuitionList, Tuition t) {
+
+		TuitionList.add(t);
+
+	}
+
 	public static TimeTable inputTimetable() {
 		// write your code here
 		String title = Helper.readString("Enter tuition title > ");

@@ -8,10 +8,11 @@ private String tuitionDuration;
 private String preRequisite;
 private String teacher;
 private String yearStart;
+private String mode;
 
 
 public Tuition(String tuitionCode, String tuitionTitle, String subjectGroupName, String tuitionDescription,
-		String tuitionDuration, String preRequisite, String teacher, String yearStart) {
+		String tuitionDuration, String preRequisite, String teacher, String yearStart, String mode) {
 	super();
 	this.tuitionCode = tuitionCode;
 	this.tuitionTitle = tuitionTitle;
@@ -21,6 +22,7 @@ public Tuition(String tuitionCode, String tuitionTitle, String subjectGroupName,
 	this.preRequisite = preRequisite;
 	this.teacher = teacher;
 	this.yearStart = yearStart;
+	this.mode = mode;
 }
 public String getTuitionCode() {
 	return tuitionCode;
@@ -46,6 +48,9 @@ public String getTeacher() {
 public String getYearStart() {
 	return yearStart;
 }
+public String getMode() {
+	return mode;
+}
 public void setTuitionCode(String tuitionCode) {
 	this.tuitionCode = tuitionCode;
 }
@@ -69,6 +74,9 @@ public void setTeacher(String teacher) {
 }
 public void setYearStart(String yearStart) {
 	this.yearStart = yearStart;
+}
+public void setMode(String mode) {
+	this.mode = mode;
 }
 
 

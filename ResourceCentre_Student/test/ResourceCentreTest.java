@@ -30,9 +30,9 @@ public class ResourceCentreTest {
 	@Before
 	public void setUp() throws Exception {
 		// prepare test data
-		cc1 = new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
-		cc2 = new Tuition("CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
-		cc3 = new Tuition("CC0013", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
+		cc1 = new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
+		cc2 = new Tuition("CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
+		cc3 = new Tuition("CC0013", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
 		cb1 = new TimeTable("Math", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
 		cb2 = new TimeTable("English", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
 		cb3 = new TimeTable("Science", "1hr 30 mins",35, "6:30 PM", "8:30 PM", "Face-to=Face");
@@ -119,8 +119,8 @@ public class ResourceCentreTest {
 		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
 		allTuition= ResourceCentre.retrieveAllTuition(tuitionList);
 
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n","CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n","CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022");
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n","CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n","CC0012", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
 
 	
 		assertEquals("Check that ViewAllCamcorderlist", testOutput, allTuition);
