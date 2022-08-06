@@ -232,8 +232,10 @@ public class ResourceCentre {
 		String preRequisite = Helper.readString("Enter pre-requisite > ");
 		String teacher = Helper.readString("Enter teacher > ");
 		String yearStart = Helper.readString("Enter yearStart > ");
+		
+		Tuition t = null;
 
-		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
+		 t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
 		return t;
 
 	}
