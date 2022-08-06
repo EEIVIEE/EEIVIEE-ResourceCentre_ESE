@@ -195,19 +195,6 @@ public class ResourceCentre {
 		return reg;
 		
 	}
-	public static Student inputStudent() {
-		String name= Helper.readString("Enter Student name > ");
-		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
-		int mobile= Helper.readInt("Enter Student phone number > ");
-		String email= Helper.readString("Enter Student email > ");
-		String dob= Helper.readString("Enter Student date of birth (dd/mm/yy) > ");
-		String residence= Helper.readString("Enter Student residence > ");
-		String interest= Helper.readString("Enter Student interest > ");
-		
-		Student s = new Student(name, gender, mobile, email, dob, residence, interest);
-		return s;
-		
-	}
 	
 	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
 
@@ -269,6 +256,20 @@ public class ResourceCentre {
 		TimeTable tt = new TimeTable(title, duration, price, start_time, end_time, mode);
 		return tt;
 
+	}
+	
+	public static Student inputStudent() {
+		String name= Helper.readString("Enter Student name > ");
+		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
+		int mobile= Helper.readInt("Enter Student phone number > ");
+		String email= Helper.readString("Enter Student email > ");
+		String dob= Helper.readString("Enter Student date of birth (dd/mm/yy) > ");
+		String residence= Helper.readString("Enter Student residence > ");
+		String interest= Helper.readString("Enter Student interest > ");
+		
+		Student s = new Student(name, gender, mobile, email, dob, residence, interest);
+		return s;
+		
 	}
 
 	public static void addTimetable(ArrayList<TimeTable> timetableList, TimeTable tt) {
@@ -333,7 +334,7 @@ public class ResourceCentre {
 		
 	}
 	
-	//================================= Option 2 View Students (CRUD- Read) =======================================
+	//================================= Option 6 View Students (CRUD- Read) =======================================
 	
 	public static void viewAllStudents(ArrayList<Student> studentList) {
 		ResourceCentre.setHeader("STUDENT LIST");
