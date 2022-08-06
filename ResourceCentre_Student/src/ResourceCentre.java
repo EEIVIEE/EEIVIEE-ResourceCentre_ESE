@@ -48,13 +48,7 @@ public class ResourceCentre {
 
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
-				if (itemType == 1) {
-					// Add a Tuitions
-					Tuition cc = inputTuition();
-					ResourceCentre.addTuiton(tuitionList, cc);
-					System.out.println("Tuition added");
-
-				} else if (itemType == 2) {
+				 if (itemType == 2) {
 					// Add a TimeTable
 					TimeTable cb = inputTimetable();
 					ResourceCentre.addTimetable(timetableList, cb);
@@ -223,29 +217,7 @@ public class ResourceCentre {
 
 	// ================================= Option 3 Add an item (CRUD - Create)
 	// =================================
-	public static Tuition inputTuition() {
-		String code = Helper.readString("Enter code > ");
-		String title = Helper.readString("Enter title > ");
-		String subjectGroup = Helper.readString("Enter subject Group > ");
-		String description = Helper.readString("Enter description > ");
-		String duration = Helper.readString("Enter duration > ");
-		String preRequisite = Helper.readString("Enter pre-requisite > ");
-		String teacher = Helper.readString("Enter teacher > ");
-		String yearStart = Helper.readString("Enter yearStart > ");
-		
-		Tuition t = null;
-
-		 t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
-		return t;
-
-	}
-
-	public static void addTuiton(ArrayList<Tuition> TuitionList, Tuition t) {
-
-		TuitionList.add(t);
-
-	}
-
+	
 	public static TimeTable inputTimetable() {
 		// write your code here
 		String title = Helper.readString("Enter tuition title > ");
