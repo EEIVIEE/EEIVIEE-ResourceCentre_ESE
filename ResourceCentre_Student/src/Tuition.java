@@ -12,7 +12,6 @@ private String yearStart;
 
 public Tuition(String tuitionCode, String tuitionTitle, String subjectGroupName, String tuitionDescription,
 		String tuitionDuration, String preRequisite, String teacher, String yearStart) {
-	super();
 	this.tuitionCode = tuitionCode;
 	this.tuitionTitle = tuitionTitle;
 	this.subjectGroupName = subjectGroupName;

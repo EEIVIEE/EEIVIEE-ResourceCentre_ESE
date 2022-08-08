@@ -9,6 +9,7 @@ public class ResourceCentre {
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		ArrayList<Registration> registrationList = new ArrayList<Registration>();
 
+		tuitionList.add(new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022"));
 		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", "Face to Face"));
 		studentList.add(new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil"));
 		studentList.add(new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil"));
@@ -40,13 +41,13 @@ public class ResourceCentre {
 				ResourceCentre.addStudent(studentList, s);
 				System.out.println("Student successfully added.");
 			} else if (option == 4) {
-				// Add a new item
+				// Add a new Tuition/Timetable
 				ResourceCentre.setHeader("ADD");
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
 				
 
-				int itemType = Helper.readInt("Enter option to select item type > ");
+				int itemType = Helper.readInt("Enter option to select list > ");
 
 				if (itemType == 1) {
 					// Add a Tuitions
@@ -71,14 +72,14 @@ public class ResourceCentre {
 				System.out.println("2. Timetable");
 				System.out.println("3. Student");
 
-				int itemType = Helper.readInt("Enter option to select item type > ");
+				int itemType = Helper.readInt("Enter option to select list > ");
 
 				if (itemType == 1) {
-					// Loan camcorder
+					// Delete Tuition
 					String t = Helper.readString("Enter code of tuition > ");
 					ResourceCentre.removeTuition(tuitionList, t);
 				} else if (itemType == 2) {
-					// Loan Chromebook
+					// Delete Timetable
 					String tt = Helper.readString("Enter name of timetable > ");
 					ResourceCentre.removeTimetable(timetableList, tt);
 				}else if (itemType==3) {
@@ -89,7 +90,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option ==6) {
+			} else if (option == 6) {
 				ResourceCentre.viewAllStudents(studentList);
 			}
 		}
@@ -119,15 +120,14 @@ public class ResourceCentre {
 		String avail;
 
 		if (isAvailable == true) {
-			avail = "Yes";
+			avail = "OPEN";
 		} else {
-			avail = "No";
+			avail = "REGISTERED";
 		}
 		return avail;
 	}
 
-	// ================================= Option 1 View items (CRUD- Read)
-	// =================================
+	// ================================= Option 1 View Tuition/ Timetable (CRUD- Read) =================================
 	public static String retrieveAllTuition(ArrayList<Tuition> tuitionList) {
 		String output = "";
 
@@ -171,9 +171,7 @@ public class ResourceCentre {
 	
 	
 
-	// ================================= Option 2 Register tuition timetable (CRUD -
-	// Create)
-	// =================================
+	// ================================= Option 2 Register tuition timetable (CRUD -Create) =================================
 	public static Registration inputRegistration(ArrayList<TimeTable> timetableList) {
 		ResourceCentre.viewAllTimetable(timetableList);
 		Registration reg = null;
@@ -195,6 +193,32 @@ public class ResourceCentre {
 		return reg;
 		
 	}
+	
+	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
+
+		RegistrationList.add(r);
+
+	}
+	
+	
+	public static boolean doRegisterTimetable(ArrayList<TimeTable> timetableList, int tuitionId) {
+		// write your code here
+		boolean isRegistered = false;
+	
+		for (int i = 0; i < timetableList.size(); i++) {
+			
+			if (tuitionId == i && timetableList.get(i).getStatus() == true) {
+				
+				timetableList.get(i).setStatus(false);;
+				
+				isRegistered = true;
+				
+			}
+		}
+		return isRegistered;
+	}
+
+	//================================= Option 3 Register Student (CRUD -Create) =================================
 	public static Student inputStudent() {
 		String name= Helper.readString("Enter Student name > ");
 		String gender=Helper.readString("Enter Student gender (Male/Female) > ");
@@ -209,37 +233,20 @@ public class ResourceCentre {
 		
 	}
 	
-	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
-
-		RegistrationList.add(r);
-
+	public static void addStudent(ArrayList<Student> studentList, Student s) {
+		studentList.add(s);
+		
 	}
 	
-	public static boolean doRegisterTimetable(ArrayList<TimeTable> timetableList, int tuitionId) {
-		// write your code here
-		boolean isRegistered = false;
-
-		for (int i = 0; i < timetableList.size(); i++) {
-			
-			if (tuitionId == i && timetableList.get(i).getStatus() == true) {
-				
-				timetableList.get(i).setStatus(false);;
-				
-				isRegistered = true;
-				
-			}
-		}
-		return isRegistered;
-	}
+	
 	
 
 
-	// ================================= Option 3 Add an item (CRUD - Create)
-	// =================================
+	// ================================= Option 4 Add a Tuition/ Timetable (CRUD - Create) =================================
 	public static Tuition inputTuition() {
 		String code = Helper.readString("Enter code > ");
 		String title = Helper.readString("Enter title > ");
-		String subjectGroup = Helper.readString("Enter subject Group > ");
+		String subjectGroup = Helper.readString("Enter SubjectGroup > ");
 		String description = Helper.readString("Enter description > ");
 		String duration = Helper.readString("Enter duration > ");
 		String preRequisite = Helper.readString("Enter pre-requisite > ");
@@ -278,14 +285,10 @@ public class ResourceCentre {
 
 	}
 	
-	public static void addStudent(ArrayList<Student> studentList, Student s) {
-		studentList.add(s);
-		
-	}
+	
 	
 
-	// ================================= Option 4 Loan an item (CRUD - Update)
-	// =================================
+	// ================================= Option 5 Remove a Tuition/ Timetable (CRUD - Update) =================================
 	
 	public static void removeTuition(ArrayList<Tuition> tuitionList, String code ) {
 		int pos = -1;
@@ -333,7 +336,7 @@ public class ResourceCentre {
 		
 	}
 	
-	//================================= Option 2 View Students (CRUD- Read) =======================================
+	//================================= Option 6 View Students (CRUD- Read) =======================================
 	
 	public static void viewAllStudents(ArrayList<Student> studentList) {
 		ResourceCentre.setHeader("STUDENT LIST");
