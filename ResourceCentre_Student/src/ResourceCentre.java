@@ -9,7 +9,7 @@ public class ResourceCentre {
 		ArrayList<Student> studentList = new ArrayList<Student>();
 		ArrayList<Registration> registrationList = new ArrayList<Registration>();
 
-		tuitionList.add(new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022"));
+		tuitionList.add(new Tuition("CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face-to-Face"));
 		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", "Face to Face"));
 		studentList.add(new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil"));
 		studentList.add(new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil"));
@@ -133,18 +133,18 @@ public class ResourceCentre {
 
 		for (int i = 0; i < tuitionList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n", tuitionList.get(i).getTuitionCode(),
 					tuitionList.get(i).getTuitionTitle(), tuitionList.get(i).getTuitionDescription(),
 					tuitionList.get(i).getSubjectGroupName(), tuitionList.get(i).getTuitionDuration(),
-					tuitionList.get(i).getPreRequisite(),tuitionList.get(i).getTeacher(),tuitionList.get(i).getYearStart());
+					tuitionList.get(i).getPreRequisite(),tuitionList.get(i).getTeacher(),tuitionList.get(i).getYearStart(),tuitionList.get(i).getMode());
 		}
 		return output;
 	}
 
 	public static void viewAllTuition(ArrayList<Tuition> tuitionList) {
-		ResourceCentre.setHeader("CAMCORDER LIST");
-		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s\n", "CODE", "TITLE", "SUBJECT GROUP",
-				"DESCRIPTION", "DURATION", "PRE-REQUISITE", "TEACHER", "YEAR START");
+		ResourceCentre.setHeader("TUITION LIST");
+		String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n", "CODE", "TITLE", "SUBJECT GROUP",
+				"DESCRIPTION", "DURATION", "PRE-REQUISITE", "TEACHER", "YEAR START", "MODE");
 		output += retrieveAllTuition(tuitionList);
 		System.out.println(output);
 	}
@@ -193,6 +193,7 @@ public class ResourceCentre {
 		return reg;
 		
 	}
+
 	
 	public static void addRegistration(ArrayList<Registration> RegistrationList, Registration r) {
 
@@ -252,8 +253,9 @@ public class ResourceCentre {
 		String preRequisite = Helper.readString("Enter pre-requisite > ");
 		String teacher = Helper.readString("Enter teacher > ");
 		String yearStart = Helper.readString("Enter yearStart > ");
+		String mode = Helper.readString("Enter Mode >");
 
-		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart);
+		Tuition t = new Tuition(code, title, subjectGroup, description, duration, preRequisite, teacher, yearStart, mode);
 		return t;
 
 	}
@@ -277,7 +279,7 @@ public class ResourceCentre {
 		return tt;
 
 	}
-
+	
 	public static void addTimetable(ArrayList<TimeTable> timetableList, TimeTable tt) {
 		// write your code here
 
