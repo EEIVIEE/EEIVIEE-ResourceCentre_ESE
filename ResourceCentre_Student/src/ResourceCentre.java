@@ -71,6 +71,7 @@ public class ResourceCentre {
 				System.out.println("1. Tuition");
 				System.out.println("2. Timetable");
 				System.out.println("3. Student");
+				System.out.println("4. Registration");
 
 				int itemType = Helper.readInt("Enter option to select list > ");
 
@@ -85,6 +86,9 @@ public class ResourceCentre {
 				}else if (itemType==3) {
 					String name= Helper.readString("Enter the name of student to delete > ");
 					ResourceCentre.removeStudent(studentList, name);
+				}else if (itemType==4) {
+					String email=Helper.readString("Enter registration email to delete > ");
+					ResourceCentre.removeRegistration(registrationList, email);
 				}
 				else {
 					System.out.println("Invalid type");
@@ -103,7 +107,7 @@ public class ResourceCentre {
 		System.out.println("2. Timetable registration");
 		System.out.println("3. Register student");
 		System.out.println("4. Add Tuition/Timetable");
-		System.out.println("5. Delete Tuition/Timetable/Student");
+		System.out.println("5. Delete Tuition/Timetable/Student/Registration");
 		System.out.println("6. Display Student");
 		System.out.println("7. Quit");
 		Helper.line(80, "-");
@@ -290,7 +294,7 @@ public class ResourceCentre {
 	
 	
 
-	// ================================= Option 5 Remove a Tuition/ Timetable (CRUD - Update) =================================
+	// ================================= Option 5 Remove a Tuition/ Timetable/ Student/ Registration (CRUD - Update) =================================
 	
 	public static void removeTuition(ArrayList<Tuition> tuitionList, String code ) {
 		int pos = -1;
@@ -334,6 +338,22 @@ public class ResourceCentre {
 			System.out.println("Invalid Student Name");
 		}else {
 			studentList.remove(position);
+		}
+		
+	}
+	
+	private static void removeRegistration(ArrayList<Registration> registrationList, String email) {
+		int position = -1;
+		for (int i=0; i<registrationList.size(); i++) {
+			if (registrationList.get(i).getEmail().equalsIgnoreCase(email)) {
+				position=i;
+			}
+		}
+		
+		if (position == -1) {
+			System.out.println("Invalid email");
+		}else {
+			registrationList.remove(position);
 		}
 		
 	}
