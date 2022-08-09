@@ -2,6 +2,40 @@ import java.util.ArrayList;
 
 public class ResourceCentre {
 
+	/**
+	 * 
+	 */
+	private static final int OPTION_VIEW_REGISTRATION = 7;
+	/**
+	 * 
+	 */
+	private static final int OPTION_VIEW_STUDENT = 6;
+	/**
+	 * 
+	 */
+	private static final int OPTION_DELETE = 5;
+	/**
+	 * 
+	 */
+	private static final int OPTION_ADD = 4;
+	/**
+	 * 
+	 */
+	private static final int OPTION_REGISTER_STUDENT = 3;
+	/**
+	 * 
+	 */
+	private static final int OPTION_REGISTRATION = 2;
+	/**
+	 * 
+	 */
+	private static final int OPTION_VIEW = 1;
+	/**
+	 * 
+	 */
+	private static final int OPTION_EXIT = 8;
+
+
 	public static void main(String[] args) {
 
 		ArrayList<Tuition> tuitionList = new ArrayList<Tuition>();
@@ -13,34 +47,35 @@ public class ResourceCentre {
 		timetableList.add(new TimeTable("Math", "1hr 30 mins", 35, "6;30 PM", "8:30 PM", "Face to Face"));
 		studentList.add(new Student("Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil"));
 		studentList.add(new Student("Tom", "Male", 87654321, "tom@gmail.com", "15/2/2004", "Singapore", "Nil"));
-
+		registrationList.add(new Registration(12,12,5,"Louispas@gmail.com","Reserved","12/2/2022"));
+		
 		int option = 0;
 
-		while (option != 7) {
+		while (option != OPTION_EXIT) {
 
 			ResourceCentre.menu();
 
 			option = Helper.readInt("Enter an option > ");
 
-			if (option == 1) {
+			if (option == OPTION_VIEW) {
 				// View all items
 				ResourceCentre.viewAllTuition(tuitionList);
 				ResourceCentre.viewAllTimetable(timetableList);
 
-			} else if (option == 2) {
+			} else if (option == OPTION_REGISTRATION) {
 				// Register for tuition timetable
 				System.out.println("===REGISTRATION DETAILS===");
 				Registration register = inputRegistration(timetableList);
 				ResourceCentre.addRegistration(registrationList, register);
 
 
-			} else if (option == 3) {
+			} else if (option == OPTION_REGISTER_STUDENT) {
 				System.out.println("===REGISTER STUDENT===");
 				
 				Student s = inputStudent();
 				ResourceCentre.addStudent(studentList, s);
 				System.out.println("Student successfully added.");
-			} else if (option == 4) {
+			} else if (option == OPTION_ADD) {
 				// Add a new Tuition/Timetable
 				ResourceCentre.setHeader("ADD");
 				System.out.println("1. Tuition");
@@ -65,7 +100,7 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 5) {
+			} else if (option == OPTION_DELETE) {
 				// Delete item
 				ResourceCentre.setHeader("DELETE");
 				System.out.println("1. Tuition");
@@ -94,8 +129,10 @@ public class ResourceCentre {
 					System.out.println("Invalid type");
 				}
 
-			} else if (option == 6) {
+			} else if (option == OPTION_VIEW_STUDENT) {
 				ResourceCentre.viewAllStudents(studentList);
+			} else if (option == OPTION_VIEW_REGISTRATION) {
+				ResourceCentre.viewAllRegistration(registrationList);
 			}
 		}
 
@@ -109,7 +146,8 @@ public class ResourceCentre {
 		System.out.println("4. Add Tuition/Timetable");
 		System.out.println("5. Delete Tuition/Timetable/Student/Registration");
 		System.out.println("6. Display Student");
-		System.out.println("7. Quit");
+		System.out.println("7. Display Registration");
+		System.out.println("8. Quit");
 		Helper.line(80, "-");
 
 	}
@@ -378,8 +416,26 @@ public class ResourceCentre {
 		}
 		return output;
 	}
-}
 
+	//================================= Option 7 View Registrations (CRUD- Read) =======================================
 
+	public static void viewAllRegistration(ArrayList<Registration> registrationList) {
+		ResourceCentre.setHeader("STUDENT LIST");
+		String output = String.format("%-10s %-10s %-10s %-20s %-15s %-10s\n", "REG_NUM", "REG_ID",
+				"TUITION_ID", "EMAIL","STATUS", "DATE");
+		output+=retrieveAllRegistrations(registrationList);
+		System.out.println(output);
+		
+	}
 	
+
+	public static String retrieveAllRegistrations(ArrayList<Registration> registrationList) {
+		String output="";
+		for (int i=0; i<registrationList.size(); i++) {
+			output += String.format("%-10s %-10s %-10d %-20s %-15s %-10s\n", registrationList.get(i).getNum(), registrationList.get(i).getRegid(),
+					registrationList.get(i).getTuitionid(), registrationList.get(i).getEmail(),registrationList.get(i).getStatus(), registrationList.get(i).getDatetime());
+		}
+		return output;
+	}
+}
 
