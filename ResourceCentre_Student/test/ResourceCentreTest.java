@@ -49,20 +49,20 @@ public class ResourceCentreTest {
 	@Test
 	public void testAddTuition() {
 		// Item list is not null, so that can add a new item
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
+		assertNotNull("Test if there is valid Tuition arraylist to add to", tuitionList);
 		
 		//Given an empty list, after adding 1 item, the size of the list is 1
 		ResourceCentre.addTuiton(tuitionList, cc1);		
-		assertEquals("Test if that Camcorder arraylist size is 1?", 1, tuitionList.size());
+		assertEquals("Test if that Tuition arraylist size is 1?", 1, tuitionList.size());
 		
 		//The item just added is as same as the first item of the list
-		assertSame("Test that Camcorder is added same as 1st item of the list?", cc1, tuitionList.get(0));
+		assertSame("Test that Tuition is added same as 1st item of the list?", cc1, tuitionList.get(0));
 		
 		//Add another item. test The size of the list is 2?
 		ResourceCentre.addTuiton(tuitionList, cc2);
 		ResourceCentre.addTuiton(tuitionList, cc3);
-		assertEquals("Test that Camcorder arraylist size is 3?", 3, tuitionList.size());
-		assertSame("Test that Camcorder is added same as 3rd item of the list?", cc3, tuitionList.get(2));
+		assertEquals("Test that Tuition arraylist size is 3?", 3, tuitionList.size());
+		assertSame("Test that Tuition is added same as 3rd item of the list?", cc3, tuitionList.get(2));
 	}
 	@Test
 	public void testAddTimetable() {
@@ -104,19 +104,19 @@ public class ResourceCentreTest {
 	@Test
 	public void testRetrieveAllTuition() {
 		// Test if Item list is not null but empty, so that can add a new item
-		assertNotNull("Test if there is valid Camcorder arraylist to add to", tuitionList);
+		assertNotNull("Test if there is valid Tuition arraylist to add to", tuitionList);
 		
 		//test if the list of camcorders retrieved from the SourceCentre is empty
 		String allTuition= ResourceCentre.retrieveAllTuition(tuitionList);
 		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allTuition);
+		assertEquals("Check that ViewAllTuitionlist", testOutput, allTuition);
 				
 		//Given an empty list, after adding 2 items, test if the size of the list is 2
 		ResourceCentre.addTuiton(tuitionList, cc1);
 		ResourceCentre.addTuiton(tuitionList, cc2);
-		assertEquals("Test if that Camcorder arraylist size is 2?", 2, tuitionList.size());
+		assertEquals("Test if that Tuition arraylist size is 2?", 2, tuitionList.size());
 		
-		//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+		//test if the expected output string same as the list of Tuitions retrieved from the SourceCentre
 		allTuition= ResourceCentre.retrieveAllTuition(tuitionList);
 
 		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20s %-20s %-20s %-20s\n","CC0011", "Math","Math","Math","1hr 30 mins","3.0 GPA","Jean Lim","2022","Face to face");
@@ -131,17 +131,17 @@ public class ResourceCentreTest {
 		// Test if Item list is not null but empty, so that can add a new item
 				assertNotNull("Test if there is valid Timetable arraylist to add to", timetableList);
 				
-				//test if the list of camcorders retrieved from the SourceCentre is empty
+				//test if the list of Tuitions retrieved from the SourceCentre is empty
 				String allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
 				String testOutput = "";
-				assertEquals("Check that RetriveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
+				assertEquals("Check that RetrieveAllTimetablelist is equal to testOutput", testOutput, allTimetable);
 						
 				//Given an empty list, after adding 2 items, test if the size of the list is 2
 				ResourceCentre.addTimetable(timetableList, cb1);
 				ResourceCentre.addTimetable(timetableList, cb2);
 				assertEquals("Test if that Timetable arraylist size is 2?", 2, timetableList.size());
 				
-				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+				//test if the expected output string same as the list of Tuitions retrieved from the SourceCentre
 				allTimetable= ResourceCentre.retrieveAllTimetable(timetableList);
 
 				testOutput = String.format("%-10s %-30s %-10s %-10s %-20s %-20d %-20s\n","Math", "1hr 30 mins", "6:30 PM", "8:30 PM", "Face-to=Face", 35, "Yes");
@@ -152,10 +152,10 @@ public class ResourceCentreTest {
 	}
 	@Test
 	public void testRetrieveAllStudents() {
-		// Test if Item list is not null but empty, so that can add a new item
+		// Test if Tuition list is not null but empty, so that can add a new item
 				assertNotNull("Test if there is valid student arraylist to add to", studentList);
 				
-				//test if the list of camcorders retrieved from the SourceCentre is empty
+				//test if the list of Tuitions retrieved from the SourceCentre is empty
 				String allStudents= ResourceCentre.retrieveAllStudents(studentList);
 				String testOutput = "";
 				assertEquals("Check that RetriveAllStudentlist is equal to testOutput", testOutput, allStudents);
@@ -165,7 +165,7 @@ public class ResourceCentreTest {
 				ResourceCentre.addStudent(studentList, s2);
 				assertEquals("Test if that student arraylist size is 2?", 2, studentList.size());
 				
-				//test if the expected output string same as the list of camcorders retrieved from the SourceCentre
+				//test if the expected output string same as the list of Tuitions retrieved from the SourceCentre
 				allStudents= ResourceCentre.retrieveAllStudents(studentList);
 
 				testOutput = String.format("%-10s %-10s %-10d %-20s %-15s %-10s %-10s\n", "Matthew", "Male", 12345678, "matthew@gmail.com", "12/3/2004", "Singapore", "Nil");

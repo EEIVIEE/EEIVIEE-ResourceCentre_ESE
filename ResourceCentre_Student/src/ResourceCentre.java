@@ -50,7 +50,7 @@ public class ResourceCentre {
 				int itemType = Helper.readInt("Enter option to select list > ");
 
 				if (itemType == 1) {
-					// Add a Tuitions
+					// Add a Tuition
 					Tuition cc = inputTuition();
 					ResourceCentre.addTuiton(tuitionList, cc);
 					System.out.println("Tuition added");
